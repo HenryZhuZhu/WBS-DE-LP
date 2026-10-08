@@ -161,15 +161,23 @@
     .btn .symbol { margin-right: 6px; }
 
     .metric-grid { display: grid; grid-template-columns: repeat(4, minmax(160px, 1fr)); gap: 10px; margin-bottom: 14px; }
+    .without-check-items .metric-grid, .spf-dashboard .metric-grid { grid-template-columns: repeat(2, minmax(160px, 1fr)); }
     .metric { background: var(--surface); border: 1px solid var(--line); border-radius: 7px; padding: 13px 16px; min-height: 82px; box-shadow: var(--shadow-soft); }
     .metric-top { color: var(--text-2); font-size: 12px; }
     .metric strong { display: block; margin-top: 10px; font-size: 27px; line-height: 1; }
     .metric.danger strong { color: var(--red); }
     .metric.warning strong { color: var(--amber); }
     .metric.success strong { color: var(--green); }
+    .delay-source-card { min-width: 0; }
+    .delay-source-filter { display: flex; align-items: center; gap: 8px; min-width: 0; margin: 0 0 6px auto; padding-left: 16px; color: var(--text-2); }
+    .delay-source-filter[hidden] { display: none; }
+    .delay-source-filter > span { flex-shrink: 0; }
+    .delay-source-filter .cell-select { width: 240px; max-width: 28vw; min-width: 112px; border: 1px solid var(--line-strong); border-radius: 5px; background-color: white; }
 
     .dashboard-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-items: stretch; }
     .dashboard-grid > .panel { display: flex; flex-direction: column; min-width: 0; }
+    .dashboard-grid > .panel[hidden] { display: none; }
+    .without-check-items .dashboard-grid { grid-template-columns: minmax(0, 1fr); }
     .dashboard-grid > .panel > .panel-body { flex: 1; }
     .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 7px; box-shadow: var(--shadow-soft); }
     .panel-head { min-height: 48px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
@@ -196,6 +204,11 @@
     .issue strong { display: block; font-size: 13px; }
     .issue small { color: var(--text-3); }
     .issue time { font-size: 12px; color: var(--red); font-weight: 600; }
+    button.issue { width: 100%; text-align: left; color: inherit; font: inherit; background: transparent; border: 0; border-bottom: 1px solid #edf0f3; border-radius: 0; }
+    button.issue:hover { background: var(--blue-soft); }
+    button.issue:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+    .issue > div { min-width: 0; overflow-wrap: anywhere; }
+    .issue .issue-context { display: block; }
 
     .check-detail-tabs { display: flex; gap: 4px; padding: 10px 12px 0 calc(var(--block-text-inset) - 12px); border-bottom: 1px solid var(--line); background: var(--surface-alt); }
     .check-detail-tabs button { width: auto; height: 42px; display: inline-flex; align-items: center; gap: 9px; border: 0; border-bottom: 2px solid transparent; padding: 0 12px; color: var(--text-2); background: transparent; text-align: left; }
@@ -399,7 +412,8 @@
     .block-cell { display: flex; align-items: center; min-width: 0; overflow: hidden; }
     .block-main { position: relative; display: grid; min-width: 0; flex: 1; overflow: hidden; }
     .block-title-line { display: flex; align-items: center; gap: 5px; min-width: 0; overflow: hidden; }
-    .block-name-wrap { position: relative; min-width: 0; max-width: calc(100% - 51px); display: inline-flex; align-items: center; }
+    .block-name-wrap { position: relative; min-width: 0; max-width: 100%; display: inline-flex; align-items: center; }
+    #wbsBody tr:hover .block-title-line, #wbsBody tr:focus-within .block-title-line { padding-right: 51px; }
     .row-actions { position: absolute; top: 50%; left: calc(100% + 2px); z-index: 3; display: flex; align-items: center; gap: 1px; padding: 1px 2px; opacity: 0; pointer-events: auto; transform: translateY(-50%); background: #f7faff; }
     tbody tr.selected .row-actions { background: #eef5ff; }
     tbody tr:hover .row-actions, .row-actions:focus-within { opacity: 1; }
@@ -414,7 +428,7 @@
     .block-name:hover { color: var(--blue); text-decoration: underline; }
     .special-ip-path-cell .block-name { white-space: nowrap; }
     .drawer-title-row h2.source-path-title { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
-    .tier { font-size: 10px; color: var(--text-3); border: 1px solid var(--line); border-radius: 3px; padding: 1px 4px; margin-left: 6px; }
+    .tier { flex: 0 0 auto; font-size: 10px; color: var(--text-3); border: 1px solid var(--line); border-radius: 3px; padding: 1px 4px; }
     .status { display: inline-flex; gap: 5px; align-items: center; border-radius: 4px; padding: 3px 7px; font-weight: 700; font-size: 11px; }
     .status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
     .status.done, .status.valid { color: var(--green); background: var(--green-soft); }
@@ -499,6 +513,16 @@
     .review-ai-preview { position: fixed; z-index: 160; width: min(420px, calc(100vw - 20px)); display: none; overflow: auto; border: 1px solid #b9cadb; border-radius: 7px; padding: 10px 12px; color: var(--text); background: white; box-shadow: var(--shadow); white-space: pre-wrap; overflow-wrap: anywhere; font-size: 12px; line-height: 1.55; }
     .review-ai-preview.open { display: block; animation: enter .12s ease-out; }
     .change-popover-close:hover { background: #eef2f6; color: var(--text); }
+    .delay-source-columns, .delay-source-option { display: grid; grid-template-columns: minmax(0, 1fr) 80px; align-items: center; gap: 16px; }
+    .delay-source-columns { margin-top: 16px; padding: 9px 6px; border-top: 1px solid var(--line); color: var(--text-3); font-size: 11px; }
+    .delay-source-columns span:last-child { text-align: right; }
+    .delay-source-list { max-height: 280px; overflow: auto; scrollbar-gutter: stable; }
+    .delay-source-option { width: 100%; padding: 9px 6px; border: 0; border-radius: 4px; text-align: left; font: inherit; color: var(--text); background: transparent; }
+    .delay-source-option span { min-width: 0; overflow-wrap: anywhere; }
+    .delay-source-option b { text-align: right; color: var(--blue); }
+    .delay-source-option:hover, .delay-source-option:focus-visible { outline: none; color: var(--blue); background: var(--blue-soft); }
+    .delay-source-option:focus-visible { box-shadow: inset 0 0 0 2px var(--blue); }
+    .delay-source-empty { padding: 18px 6px; color: var(--text-3); text-align: center; }
     .change-popover-list { max-height: 360px; overflow: auto; padding: 3px 12px 10px; }
     .change-record { display: grid; grid-template-columns: 30px 1fr; gap: 9px; padding: 11px 0; border-bottom: 1px solid #edf0f3; }
     .change-record:last-child { border-bottom: 0; }
@@ -620,13 +644,15 @@
     .inline-draft-name::before, .inline-draft-row.version-draft .inline-version-cell::before { content: "*"; position: absolute; z-index: 4; color: var(--red); font-size: 10px; font-weight: 800; pointer-events: none; }
     .inline-draft-name::before { top: 4px; left: 7px; }
     .inline-draft-name input { padding-left: 19px; }
+    .inline-draft-position { display: block; margin: 3px 0 0 19px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-3); font-size: 10px; line-height: 14px; }
     .inline-draft-row.version-draft .inline-version-cell { position: sticky; }
     .inline-draft-row.version-draft .inline-version-cell::before { top: 14px; left: 12px; }
     .inline-draft-row.version-draft .inline-version-cell select { padding-left: 18px; }
     .inline-version-draft-control { display: flex; align-items: center; gap: 4px; }
     .inline-version-draft-control > select { min-width: 92px; }
     .inline-draft-locked-name { min-width: 70px; overflow: hidden; font-weight: 800; text-overflow: ellipsis; }
-    .inline-tier-select, .inline-tier-static { width: 90px; flex: 0 0 90px; height: 30px; margin-left: 5px; border: 1px solid #b8c5d3; border-radius: 5px; color: #405165; background: white; font-size: 10px; font-weight: 700; }
+    .inline-draft-block .tier { margin-right: 5px; }
+    .inline-tier-select, .inline-tier-static { width: 90px; flex: 0 0 90px; height: 30px; margin-right: 5px; border: 1px solid #b8c5d3; border-radius: 5px; color: #405165; background: white; font-size: 10px; font-weight: 700; }
     .inline-tier-select { padding: 0 5px; }
     .inline-tier-static { display: flex; align-items: center; padding: 0 8px; }
     .inline-draft-actions { display: flex; flex: 0 0 auto; gap: 2px; margin-left: 5px; }
@@ -661,8 +687,11 @@
     .validation-blocker small { color: var(--text-2); line-height: 1.5; white-space: normal; }
 
     .delay-table { min-width: 900px; }
+    .delay-table .delay-source-column { min-width: 105px; max-width: 220px; white-space: normal; overflow-wrap: anywhere; }
+    .delay-table [hidden] { display: none; }
     .delay-tabs { display: flex; gap: 4px; padding: 10px 12px 0; border-bottom: 1px solid var(--line); background: var(--surface-alt); }
     .delay-tabs button { min-width: 180px; height: 38px; padding: 0 14px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--text-2); font-weight: 600; text-align: left; }
+    .delay-tabs button[hidden] { display: none; }
     .delay-tabs button:hover { color: var(--blue); background: var(--blue-soft); }
     .delay-tabs button.active { color: var(--blue); border-bottom-color: var(--blue); background: white; }
     .delay-tabs strong { float: right; color: inherit; }
@@ -1036,8 +1065,8 @@
           </div>
         </div>
         <span class="project-table-divider" aria-hidden="true"></span>
-        <span class="table-picker-label">表名称</span>
-        <div class="table-switcher" id="tableSelect" role="radiogroup" aria-label="选择表名称"><button class="active" type="button" data-table-name="ChanEdgel" role="radio" aria-checked="true">ChanEdgel</button><button type="button" data-table-name="ChanLeft" role="radio" aria-checked="false" tabindex="-1">ChanLeft</button><button type="button" data-table-name="ChanMid" role="radio" aria-checked="false" tabindex="-1">ChanMid</button><button type="button" data-table-name="LPTOP5" role="radio" aria-checked="false" tabindex="-1">LPTOP5</button><button type="button" data-table-name="IO IP" role="radio" aria-checked="false" tabindex="-1">IO IP</button><button type="button" data-table-name="Analog IP" role="radio" aria-checked="false" tabindex="-1">Analog IP</button></div>
+        <span class="table-picker-label">WBS</span>
+        <div class="table-switcher" id="tableSelect" role="radiogroup" aria-label="选择 WBS"><button class="active" type="button" data-table-name="ChanEdgel" role="radio" aria-checked="true">ChanEdgel</button><button type="button" data-table-name="ChanLeft" role="radio" aria-checked="false" tabindex="-1">ChanLeft</button><button type="button" data-table-name="ChanMid" role="radio" aria-checked="false" tabindex="-1">ChanMid</button><button type="button" data-table-name="LPTOP5" role="radio" aria-checked="false" tabindex="-1">LPTOP5</button><button type="button" data-table-name="IO IP" role="radio" aria-checked="false" tabindex="-1">IO IP</button><button type="button" data-table-name="Analog IP" role="radio" aria-checked="false" tabindex="-1">Analog IP</button></div>
         <button type="button" class="icon-btn" id="newTableBtn" title="新建表" aria-label="新建表"><svg class="lucide lucide-plus" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
       </div>
       <div class="top-actions">
@@ -1071,8 +1100,8 @@
         </div>
         <div class="metric-grid" id="metricGrid"></div>
         <div class="dashboard-grid">
-          <section class="panel">
-            <div class="panel-head"><h2>Check item 进度</h2><button class="btn" id="viewAllChecks">查看全部</button></div>
+          <section class="panel" id="checkItemPanel">
+            <div class="panel-head"><h2 id="checkItemProgressTitle">Check item 进度</h2><button class="btn" id="viewAllChecks">查看全部</button></div>
             <div class="panel-body" id="checkItemProgress"></div>
           </section>
           <section class="panel">
@@ -1117,8 +1146,10 @@
           <div class="delay-tabs" id="delayTabs">
             <button class="active" data-delay-category="schematic"><span>Schematic Delay</span><strong id="schematicDelayCount">0</strong></button>
             <button data-delay-category="layout"><span>Layout Delay</span><strong id="layoutDelayCount">0</strong></button>
+            <button data-delay-category="spf" hidden><span>SPF Delay</span><strong id="spfDelayCount">0</strong></button>
+            <label class="delay-source-filter" id="delaySourceFilter" for="delaySourceSelect" hidden><span>Source</span><select class="cell-select" id="delaySourceSelect" aria-label="筛选 Delay 来源"><option value="null">全部 Source</option></select></label>
           </div>
-          <div class="table-wrap"><table class="delay-table"><thead><tr><th>Block</th><th>Hierarchy</th><th>Owner</th><th id="delayBaselineHeader">Planned release</th><th id="delayActualHeader">Actual release</th><th>延误</th><th>状态</th><th></th></tr></thead><tbody id="delayBody"></tbody></table></div>
+          <div class="table-wrap"><table class="delay-table"><thead><tr><th class="delay-source-column" id="delaySourceHeader" hidden>Source</th><th>Block</th><th id="delayStageHeader" hidden>流程节点</th><th id="delayOwnerHeader">Owner</th><th id="delayLayoutOwnerHeader" hidden>Layout Owner</th><th id="delayBaselineHeader">Planned release</th><th id="delayActualHeader">Actual release</th><th>延误</th><th>状态</th><th></th></tr></thead><tbody id="delayBody"></tbody></table></div>
         </div>
       </section>
 
@@ -2055,6 +2086,51 @@
       synchronizeSchematicLayoutIdentityRows();
       schematicPlannedReleaseUnlocked=Boolean(state.schematicPlannedReleaseUnlocked);
     }
+    function initializeSpecialIpExamples() {
+      const examples=[
+        ['ChanEdgel',{
+          io:[['io','2026-10-04','2026-10-02'],['row','2026-10-01','2026-09-30'],['sense-v1','2026-10-07','2026-10-08'],['sense','2026-09-30','2026-09-30']],
+          analog:[['pwr','2026-10-02','2026-10-03','2026-10-04'],['core','2026-09-30','2026-09-30','2026-10-02']]
+        }],
+        ['ChanLeft',{
+          io:[['core','2026-09-30','2026-10-03'],['row','2026-10-02','2026-09-30']],
+          analog:[['pwr','2026-10-01','2026-09-30','2026-09-30'],['sense-v1','2026-10-06','2026-10-07','2026-10-08'],['sense','','','']]
+        }],
+        ['ChanMid',{
+          io:[['bitcell','2026-09-30','2026-09-30'],['dft','','']],
+          analog:[['pwr','2026-09-30','2026-10-03','2026-10-01'],['io','','','']]
+        }]
+      ];
+      const originalTable=activeTableName;
+      // Seed source Categories first; the normal projection owns every example's identity and baselines.
+      for(const [sourceTableName,groups] of examples){
+        activeTableName=sourceTableName;restoreTableState(tableStateStore.get(sourceTableName));
+        for(const [type,entries] of Object.entries(groups)){
+          const category=type==='io'?IO_IP_TABLE_NAME:ANALOG_IP_TABLE_NAME;
+          for(const [definitionId] of entries){
+            const source=data.schematic.find(item=>item.def.id===definitionId);
+            if(!source)throw new Error(`示例来源 Block 不存在：${sourceTableName}/${definitionId}`);
+            specialIpPreviousCategories.set(specialIpSourceIdentity(sourceTableName,definitionId),source.def.category);
+            [...data.schematic,...data.layout].filter(item=>item.def.id===definitionId).forEach(item=>item.def.category=category);
+          }
+        }
+        reconcileActiveSourceCategoriesToSpecialIp();
+        for(const [type,entries] of Object.entries(groups)){
+          const rows=type==='io'?ioIpRows:analogIpRows;
+          for(const [definitionId,schematicActual,layoutActual,finalActual] of entries){
+            const projected=rows.find(item=>item.sourceTableName===sourceTableName&&specialIpSourceDefinitionIds(item).includes(definitionId));
+            if(!projected)throw new Error(`示例来源投影缺失：${sourceTableName}/${definitionId}`);
+            Object.assign(projected,{layoutFinishPlanned:'2026-09-30',layoutFinishActual:layoutActual},type==='io'
+              ?{schReleasePlanFinish:'2026-09-30',schReleaseActualFinish:schematicActual}
+              :{spfSimPlanned:'2026-09-30',spfSimActual:schematicActual,finalReviewPlanned:'2026-09-30',finalReviewActual:finalActual});
+            const versions=specialIpVersionGroup(projected,type);
+            selectedSpecialIpVersions[type].set(specialIpGroupKey(projected),versions[versions.length-1].id);
+          }
+        }
+        tableStateStore.set(sourceTableName,captureTableState());
+      }
+      activeTableName=originalTable;
+    }
     function isIoIpTable(tableName=activeTableName) { return tableName===IO_IP_TABLE_NAME; }
     function isAnalogIpTable(tableName=activeTableName) { return tableName===ANALOG_IP_TABLE_NAME; }
     function isSpecialIpTable(tableName=activeTableName) { return isIoIpTable(tableName)||isAnalogIpTable(tableName); }
@@ -2130,6 +2206,7 @@
     function switchPrototypeProject(name) {
       if(name===activeProjectName)return;
       if(!projectStates.has(name))return showToast('该 Project 不存在');
+      delaySourceFilter=null;
       closeProjectSwitcher();
       flushPendingCategoryEdits();
       projectStates.set(activeProjectName,captureProjectState());
@@ -2187,7 +2264,8 @@
       const result=state.mode==='project'?createPrototypeProject(name):createPrototypeTable(name,kind);
       if(!result.ok){const error=document.getElementById('workspaceCreateError');error.textContent=result.message;error.hidden=false;document.getElementById('workspaceCreateName').setAttribute('aria-invalid','true');document.getElementById('workspaceCreateName').focus();return;}
       closeWorkspaceCreate(false);
-      document.querySelector(state.mode==='project'?'#emptyProjectCreate':'[data-empty-create-row], [data-spf-create-row]')?.focus();
+      if(state.mode==='table')startInlineBlockDraft();
+      else document.getElementById('emptyProjectCreate')?.focus();
     }
     function specialIpSourceIdentity(sourceTableName,sourceDefinitionId) { return `${sourceTableName}\u0000${sourceDefinitionId}`; }
     function specialIpMembershipKey(sourceTableName,sourceNodeId) { return `${sourceTableName}\u0000${sourceNodeId}`; }
@@ -2241,7 +2319,7 @@
     }
     function specialIpBlockLabel(item) {
       const path=specialIpBlockPath(item);
-      return path.length?path.map(part=>`${part.name} T${part.tier}`).join('/'):item.block;
+      return path.length?path.map(part=>`T${part.tier} ${part.name}`).join('/'):item.block;
     }
     function specialIpDisplayDepth(item,rows) {
       let depth=0,parent=logicalParentNodeId(item);
@@ -2666,6 +2744,7 @@
       if(!tableSelectorNames(true).includes(tableName))return showToast('该表当前没有有效记录，已隐藏');
       setTableSelectorValue(tableName);
       if(tableName===activeTableName)return;
+      delaySourceFilter=null;
       closeDrawer(false);
       specialIpAddDraft=null;
       closeInlineAddMenu();
@@ -2677,7 +2756,10 @@
       activeTableName=tableName;
       if(!isSpecialIpTable())lastOrdinaryTableName=tableName;
       resetWbsColumnFilters();
-      if(isSpecialIpTable())renderWbs();
+      if(isSpecialIpTable()){
+        renderWbs();
+        if(document.getElementById('checkItemsPage').classList.contains('active'))showPage('dashboard');
+      }
       else {
         const hierarchies=tableHierarchies();
         if(!hierarchies.includes(currentHierarchy)||!data[currentHierarchy].length)currentHierarchy=hierarchies.find(type=>data[type].length)||hierarchies[0];
@@ -2934,6 +3016,7 @@
 
     let currentHierarchy = 'schematic';
     let currentDelayCategory = 'schematic';
+    let delaySourceFilter = null;
     let currentCheckDetailHierarchy = 'schematic';
     let latestChangeDrawerCollapsed = false;
     try { latestChangeDrawerCollapsed=localStorage.getItem('de-wbs-latest-change-drawer-collapsed-v1')==='true'; }
@@ -3473,6 +3556,10 @@
       return `<span class="inline-draft-actions"><button class="inline-draft-action confirm" id="confirmInlineDraft" type="button" title="确认创建" aria-label="确认创建"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg></button><button class="inline-draft-action cancel" id="cancelInlineDraft" type="button" title="取消" aria-label="取消"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"></path></svg></button></span>`;
     }
     function inlineDraftInput(field,value='',attributes='') { const input=`<input data-inline-field="${field}" value="${esc(value)}" ${attributes}>`;return attributes.includes('type="date"')?clearableDateControl(input,value):input; }
+    function inlineBlockPositionHtml(parentName,tier) {
+      const label=`${parentName?`新增至 ${parentName} 下`:'新增顶层 Block'} · T${tier} · 仅名称必填`;
+      return `<span class="inline-draft-position" id="inlineDraftPosition" title="${esc(label)}">${esc(label)}</span>`;
+    }
     function inlineDraftSelect(field,values,value='') { return field==='category'?categoryChoiceHtml(value,'新 Block 的 Block Category',true):`<select data-inline-field="${field}">${values.map(option=>`<option value="${esc(option)}" ${option===value?'selected':''}>${option||'空'}</option>`).join('')}</select>`; }
     function inlineDraftBusinessCells() {
       const draft=inlineAddDraft,readonly='<span class="inline-draft-readonly">确认后生成</span>';
@@ -3483,9 +3570,10 @@
     }
     function inlineDraftRowHtml() {
       const draft=inlineAddDraft,versionRequired=draft.mode==='version',available=versionRequired?availableInlineVersions(inlineDraftAnchor()):['1st'];
-      const blockMain=draft.mode==='version'?`<span class="inline-draft-locked-name">${esc(draft.name)}</span><span class="tier">T${draft.tier}</span>`:`<span class="inline-draft-name">${inlineDraftInput('name',draft.name,'id="inlineDraftName" placeholder="输入 Block 名称"')}</span>${inlineTierControl()}`;
+      const blockMain=draft.mode==='version'?`<span class="tier">T${draft.tier}</span><span class="inline-draft-locked-name">${esc(draft.name)}</span>`:`${inlineTierControl()}<span class="inline-draft-name">${inlineDraftInput('name',draft.name,'id="inlineDraftName" placeholder="输入 Block 名称" aria-label="Block 名称" aria-describedby="inlineDraftPosition"')}</span>`;
       const versionOptionsHtml=sequentialVersionOptionsHtml(available,draft.version);
-      const blockCell=`<td class="frozen-column frozen-block-column inline-draft-block"><div class="block-cell" style="padding-left:${(draft.tier-1)*17}px"><span class="tree-toggle hidden"></span>${blockMain}${versionRequired?'':inlineDraftActions()}</div></td>`;
+      const parent=draft.parentNodeId?logicalNodeRepresentative(data[currentHierarchy],draft.parentNodeId):null;
+      const blockCell=`<td class="frozen-column frozen-block-column inline-draft-block"><div class="block-cell" style="padding-left:${(draft.tier-1)*17}px"><span class="tree-toggle hidden"></span>${blockMain}${versionRequired?'':inlineDraftActions()}</div>${versionRequired?'':inlineBlockPositionHtml(parent?.def.name,draft.tier)}</td>`;
       const versionControl=versionRequired?`<div class="inline-version-draft-control"><select id="inlineDraftVersion" data-inline-field="version">${versionOptionsHtml}</select>${inlineDraftActions()}</div>`:`<select id="inlineDraftVersion" data-inline-field="version">${versionOptionsHtml}</select>`;
       return `<tr class="inline-draft-row ${versionRequired?'version-draft':''}" data-inline-draft>${blockCell}<td class="frozen-column frozen-round-column inline-version-cell ${currentHierarchy==='spf'?'last-frozen-column':''}">${versionControl}</td>${inlineDraftBusinessCells()}</tr>`;
     }
@@ -3509,19 +3597,20 @@
     }
     function bindInlineDraft() {
       if(!inlineAddDraft||inlineAddDraft.hierarchy!==currentHierarchy)return;
+      const draft=inlineAddDraft;
       document.querySelectorAll('[data-inline-field]').forEach(control=>{
-        if(control.matches('[data-category-choice]')){bindCategoryChoice(control,{tableName:activeTableName,hierarchy:currentHierarchy,draft:inlineAddDraft});return;}
-        if(control.matches('[data-project-choice]')){bindProjectChoice(control,{tableName:activeTableName,hierarchy:currentHierarchy,draft:inlineAddDraft,field:control.dataset.inlineField});return;}
+        if(control.matches('[data-category-choice]')){bindCategoryChoice(control,{tableName:activeTableName,hierarchy:currentHierarchy,draft});return;}
+        if(control.matches('[data-project-choice]')){bindProjectChoice(control,{tableName:activeTableName,hierarchy:currentHierarchy,draft,field:control.dataset.inlineField});return;}
         control.addEventListener('click',event=>event.stopPropagation());
-        control.addEventListener('input',()=>{inlineAddDraft[control.dataset.inlineField]=control.value;const finish=document.querySelector('[data-layout-draft-finish]');if(finish){const result=layoutPlanFinishResult(inlineAddDraft);finish.textContent=result.value;finish.title=result.reason;}});
-        control.addEventListener('change',()=>{inlineAddDraft[control.dataset.inlineField]=control.value;if(inlineAddDraft.mode==='version'&&control.dataset.inlineField==='version'){inlineAddDraft.focus=true;renderWbs();}});
+        control.addEventListener('input',()=>{if(inlineAddDraft!==draft||!control.isConnected)return;draft[control.dataset.inlineField]=control.value;const finish=document.querySelector('[data-layout-draft-finish]');if(finish){const result=layoutPlanFinishResult(draft);finish.textContent=result.value;finish.title=result.reason;}});
+        control.addEventListener('change',()=>{if(inlineAddDraft!==draft||!control.isConnected)return;draft[control.dataset.inlineField]=control.value;if(draft.mode==='version'&&control.dataset.inlineField==='version'){draft.focus=true;renderWbs();}});
       });
-      document.getElementById('inlineDraftTier')?.addEventListener('change',event=>{applyInlineDraftTier(Number(event.target.value));renderWbs();});
-      document.getElementById('confirmInlineDraft')?.addEventListener('click',event=>{event.stopPropagation();confirmInlineDraft();});
-      document.getElementById('cancelInlineDraft')?.addEventListener('click',event=>{event.stopPropagation();cancelInlineDraft();});
-      if(inlineAddDraft.focus){const draft=inlineAddDraft,target=draft.mode==='version'?'inlineDraftVersion':'inlineDraftName';draft.focus=false;requestAnimationFrame(()=>{if(inlineAddDraft===draft&&!document.querySelector('.modal-backdrop.open')&&document.getElementById('projectSwitchPopover').hidden)document.getElementById(target)?.focus();});}
+      document.getElementById('inlineDraftTier')?.addEventListener('change',event=>{if(inlineAddDraft!==draft||!event.currentTarget.isConnected)return;applyInlineDraftTier(Number(event.target.value));renderWbs();});
+      document.getElementById('confirmInlineDraft')?.addEventListener('click',event=>{event.stopPropagation();if(inlineAddDraft===draft&&event.currentTarget.isConnected)confirmInlineDraft();});
+      document.getElementById('cancelInlineDraft')?.addEventListener('click',event=>{event.stopPropagation();if(inlineAddDraft===draft&&event.currentTarget.isConnected)cancelInlineDraft();});
+      if(draft.focus){const target=draft.mode==='version'?'inlineDraftVersion':'inlineDraftName';draft.focus=false;requestAnimationFrame(()=>{if(inlineAddDraft===draft&&!document.querySelector('.modal-backdrop.open')&&document.getElementById('projectSwitchPopover').hidden)document.getElementById(target)?.focus();});}
     }
-    function cancelInlineDraft(notify=true) { inlineAddDraft=null;renderWbs();if(notify)showToast('已取消草稿'); }
+    function cancelInlineDraft(notify=true) { inlineAddDraft=null;renderWbs();if(!data[currentHierarchy].length)document.querySelector('[data-empty-create-row], [data-spf-create-row]')?.focus();if(notify)showToast('已取消草稿'); }
     function insertInlineItem(item,type,anchor,mode) {
       const instances=data[type],matching=instances.filter(candidate=>logicalNodeId(candidate)===logicalNodeId(item));
       if(matching.length){item.displayAfterId=matching.find(candidate=>candidate.displayAfterId)?.displayAfterId||null;instances.splice(instances.indexOf(matching[matching.length-1])+1,0,item);return;}
@@ -3649,7 +3738,7 @@
     function specialIpBlockCell(item,type) {
       const rows=type==='io'?ioIpRows:analogIpRows,group=specialIpVersionGroup(item,type),hasChildren=logicalNodeHasChildren(rows,item),expanded=group.every(member=>member.expanded!==false),levelPad=specialIpDisplayDepth(item,rows)*17;
       const label=specialIpBlockLabel(item),path=Boolean(specialIpBlockPath(item).length);
-      return `<td class="frozen-column frozen-block-column ${path?'special-ip-path-cell':''}"><div class="block-cell" style="padding-left:${levelPad}px"><button class="tree-toggle ${hasChildren?'':'hidden'}" type="button" title="${expanded?'收起':'展开'}下级 Block" aria-label="${expanded?'收起':'展开'} ${esc(label)} 的下级 Block" aria-expanded="${expanded}">${expanded?'▾':'▸'}</button><div class="block-main"><div class="block-title-line"><span class="block-name-wrap"><span class="block-name" title="${esc(label)}">${esc(label)}</span>${path?'':`<span class="tier">T${item.tier}</span>`}<span class="row-actions"><button class="row-action row-add" data-special-ip-add type="button" title="新增 Block" aria-label="在 ${esc(label)} 行新增 Block">+</button><button class="row-action row-delete" data-special-ip-delete type="button" title="删除 ${esc(label)} Block" aria-label="删除 ${esc(label)} Block"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M19 6v14H5V6"></path><path d="M10 11v5M14 11v5"></path></svg></button></span></span></div></div></div></td>`;
+      return `<td class="frozen-column frozen-block-column ${path?'special-ip-path-cell':''}"><div class="block-cell" style="padding-left:${levelPad}px"><button class="tree-toggle ${hasChildren?'':'hidden'}" type="button" title="${expanded?'收起':'展开'}下级 Block" aria-label="${expanded?'收起':'展开'} ${esc(label)} 的下级 Block" aria-expanded="${expanded}">${expanded?'▾':'▸'}</button><div class="block-main"><div class="block-title-line">${path?'':`<span class="tier">T${item.tier}</span>`}<span class="block-name-wrap"><span class="block-name" title="${esc(label)}">${esc(label)}</span><span class="row-actions"><button class="row-action row-add" data-special-ip-add type="button" title="新增 Block" aria-label="在 ${esc(label)} 行新增 Block">+</button><button class="row-action row-delete" data-special-ip-delete type="button" title="删除 ${esc(label)} Block" aria-label="删除 ${esc(label)} Block"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M19 6v14H5V6"></path><path d="M10 11v5M14 11v5"></path></svg></button></span></span></div></div></div></td>`;
     }
     function specialIpSourceMergePlan(items,allRows,merge=true) {
       const plan=new Map();
@@ -3677,9 +3766,10 @@
     }
     function specialIpDraftRowHtml(type,definitions) {
       const draft=specialIpAddDraft,anchor=(type==='io'?ioIpRows:analogIpRows).find(item=>item.id===draft.anchorId),available=draft.mode==='version'?availableSpecialIpVersions(anchor,type):['1st'],blankCells=definitions.slice(6,-1).map(()=>'<td></td>').join(''),versionOptionsHtml=sequentialVersionOptionsHtml(available,draft.version);
+      const parent=draft.parentNodeId?logicalNodeRepresentative(type==='io'?ioIpRows:analogIpRows,draft.parentNodeId):null;
       return `<tr class="inline-draft-row" data-special-ip-draft-row>
         <td class="io-ip-source-column"><span>${esc(draft.mode==='version'?draft.sourceTableName||draft.sourceRegionName||'':'')}</span></td>
-        <td class="frozen-column frozen-block-column inline-draft-block"><div class="block-cell" style="padding-left:${anchor?(specialIpDisplayDepth(anchor,type==='io'?ioIpRows:analogIpRows)+(draft.mode==='block'&&draft.tier>anchor.tier?1:0))*17:0}px"><span class="tree-toggle hidden"></span>${draft.mode==='version'?`<span class="inline-draft-locked-name" title="${esc(specialIpBlockLabel(anchor))}">${esc(specialIpBlockLabel(anchor))}</span>${anchor.sourcePath?.length?'':`<span class="tier">T${draft.tier}</span>`}`:`<span class="inline-draft-name">${inlineDraftInput('block',draft.block,'id="specialIpDraftName" placeholder="输入 Block 名称" data-special-ip-draft')}</span>${specialIpTierControl()}${inlineDraftActions()}`}</div></td>
+        <td class="frozen-column frozen-block-column inline-draft-block"><div class="block-cell" style="padding-left:${anchor?(specialIpDisplayDepth(anchor,type==='io'?ioIpRows:analogIpRows)+(draft.mode==='block'&&draft.tier>anchor.tier?1:0))*17:0}px"><span class="tree-toggle hidden"></span>${draft.mode==='version'?`${specialIpBlockPath(anchor).length?'':`<span class="tier">T${draft.tier}</span>`}<span class="inline-draft-locked-name" title="${esc(specialIpBlockLabel(anchor))}">${esc(specialIpBlockLabel(anchor))}</span>`:`${specialIpTierControl()}<span class="inline-draft-name">${inlineDraftInput('block',draft.block,'id="specialIpDraftName" placeholder="输入 Block 名称" aria-label="Block 名称" aria-describedby="inlineDraftPosition" data-special-ip-draft')}</span>${inlineDraftActions()}`}</div>${draft.mode==='version'?'':inlineBlockPositionHtml(parent?specialIpBlockLabel(parent):'',draft.tier)}</td>
         <td class="io-ip-version-column"><div class="${draft.mode==='version'?'inline-version-draft-control':''}"><select id="specialIpDraftVersion" data-inline-field="version" data-special-ip-draft aria-label="Version">${versionOptionsHtml}</select>${draft.mode==='version'?inlineDraftActions():''}</div></td>
         <td class="io-ip-reference-column">${draft.mode==='version'?esc(draft.referenceProject||''):projectChoiceHtml(draft.referenceProject,'reference','data-inline-field="referenceProject" data-special-ip-draft','Reference project')}</td>
         <td class="io-ip-schematic-owner-column">${draft.mode==='version'?esc(draft.schematicOwner||''):projectChoiceHtml(draft.schematicOwner,'schematicOwner','data-inline-field="schematicOwner" data-special-ip-draft','Schematic Owner')}</td>
@@ -3868,8 +3958,10 @@
       closeColumnFilterPopover();
       syncIoIpTableMode(isSpecialIpTable());
       if(!activeTableName){wbsHead.replaceChildren();wbsBody.replaceChildren();wbsColgroup.replaceChildren();return;}
-      if(isIoIpTable()){renderIoIpTable(preservedSpecialChange);return;}
-      if(isAnalogIpTable()){renderAnalogIpTable(preservedSpecialChange);return;}
+      if(isSpecialIpTable()){
+        if(isIoIpTable())renderIoIpTable(preservedSpecialChange);else renderAnalogIpTable(preservedSpecialChange);
+        renderDashboard();renderDelay();return;
+      }
       wbsHead.className='';
       const meta = hierarchyMeta[currentHierarchy];
       const isLayout = currentHierarchy === 'layout';
@@ -3894,8 +3986,8 @@
         return true;
       };
       const items = displayItems.filter(item => visibleByTree(item)&&matchesWbsColumnFilters(item,currentHierarchy));
-      const spfCreateRow=isSpf||!all.length?`<tr class="spf-create-row" ${isSpf?'data-spf-create-row':'data-empty-create-row'} tabindex="0" role="button" aria-label="新增 ${isSpf?'SPF':isLayout?'Layout':'Schematic'} Block" title="点击新增 Block"><td class="frozen-column frozen-block-column"><span class="spf-create-cue"><span class="row-action row-add spf-create-plus" aria-hidden="true">+</span><span class="spf-create-label">新增 Block</span></span></td><td class="frozen-column frozen-round-column ${isSpf?'last-frozen-column':''}"></td>${Array.from({length:wbsColumnDefinitions[currentHierarchy].length-2},()=>'<td></td>').join('')}</tr>`:'';
       const draftActive=inlineAddDraft?.hierarchy===currentHierarchy,draftIndex=draftActive?inlineDraftIndex(items):-1,renderedRows=[];
+      const spfCreateRow=(isSpf||!all.length)&&!(draftActive&&!all.length)?`<tr class="spf-create-row" ${isSpf?'data-spf-create-row':'data-empty-create-row'} tabindex="0" role="button" aria-label="新增 ${isSpf?'SPF':isLayout?'Layout':'Schematic'} Block" title="点击新增 Block"><td class="frozen-column frozen-block-column"><span class="spf-create-cue"><span class="row-action row-add spf-create-plus" aria-hidden="true">+</span><span class="spf-create-label">新增 Block</span></span></td><td class="frozen-column frozen-round-column ${isSpf?'last-frozen-column':''}"></td>${Array.from({length:wbsColumnDefinitions[currentHierarchy].length-2},()=>'<td></td>').join('')}</tr>`:'';
       const versionDraftKey=draftActive&&inlineAddDraft.mode==='version'&&inlineDraftAnchor()?blockMergeGroupKey(inlineDraftAnchor()):null;
       items.forEach((item,index)=>{if(draftActive&&index===draftIndex)renderedRows.push(inlineDraftRowHtml());if(versionDraftKey===blockMergeGroupKey(item))return;renderedRows.push(rowHtml(item));});
       if(draftActive&&draftIndex>=items.length)renderedRows.push(inlineDraftRowHtml());
@@ -4004,7 +4096,7 @@
         : type === 'layout'
           ? `${counterpartProgressCell}${ownerCell}${layoutPlanWorkdaysCell}${layoutResourceCell}${dateEditorCell('startDate',rail.startDate)}${dateEditorCell('planned',rail.planned,late?'date late':'date',{editable:false,title:layoutPlanFinishResult(rail).reason})}${dateEditorCell('actual',rail.actual,'date')}${ownProgressCell}${checkItemCell}${layoutQualifiedCell}`
           : `${checkItemCell}${spfReadyCell}`;
-      const blockCell=`<td class="frozen-column frozen-block-column" data-block-merge-key="${esc(blockMergeKey(item))}" data-block-merge-group="${esc(blockMergeGroupKey(item))}"><div class="block-cell" style="padding-left:${levelPad}px"><button class="tree-toggle ${hasChildren?'':'hidden'}" title="${groupExpanded?'收起':'展开'}下级 Block" aria-label="${groupExpanded?'收起':'展开'} ${esc(item.def.name)} 的下级 Block" aria-expanded="${groupExpanded}">${groupExpanded?'▾':'▸'}</button><div class="block-main"><div class="block-title-line"><span class="block-name-wrap"><span class="block-name">${esc(item.def.name)}</span><span class="row-actions"><button class="row-action row-add" data-add-child type="button" title="新增 Block" aria-label="在 ${esc(item.def.name)} 行新增 Block">+</button><button class="row-action row-delete" data-delete-instance type="button" title="删除 ${esc(item.def.name)} Block" aria-label="删除 ${esc(item.def.name)} Block"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M19 6v14H5V6"></path><path d="M10 11v5M14 11v5"></path></svg></button></span></span><span class="tier">T${item.tier}</span></div></div></div></td>`;
+      const blockCell=`<td class="frozen-column frozen-block-column" data-block-merge-key="${esc(blockMergeKey(item))}" data-block-merge-group="${esc(blockMergeGroupKey(item))}"><div class="block-cell" style="padding-left:${levelPad}px"><button class="tree-toggle ${hasChildren?'':'hidden'}" title="${groupExpanded?'收起':'展开'}下级 Block" aria-label="${groupExpanded?'收起':'展开'} ${esc(item.def.name)} 的下级 Block" aria-expanded="${groupExpanded}">${groupExpanded?'▾':'▸'}</button><div class="block-main"><div class="block-title-line"><span class="tier">T${item.tier}</span><span class="block-name-wrap"><span class="block-name">${esc(item.def.name)}</span><span class="row-actions"><button class="row-action row-add" data-add-child type="button" title="新增 Block" aria-label="在 ${esc(item.def.name)} 行新增 Block">+</button><button class="row-action row-delete" data-delete-instance type="button" title="删除 ${esc(item.def.name)} Block" aria-label="删除 ${esc(item.def.name)} Block"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M19 6v14H5V6"></path><path d="M10 11v5M14 11v5"></path></svg></button></span></span></div></div></div></td>`;
       return `<tr data-id="${item.id}" data-block-merge-key="${esc(blockMergeKey(item))}" data-block-merge-group="${esc(blockMergeGroupKey(item))}" class="${selectedItem?.id === item.id ? 'selected' : ''}">
         ${blockCell}
         ${roundCell}
@@ -4812,16 +4904,99 @@
       showToast(group.length>1?`${group.length} 个 Version 的 Block name 已同步更新`:`Block name 已更新：${oldName} → ${nextName}`);
     }
 
+    function availableDelayHierarchies() {
+      return tableKinds.get(activeTableName)==='spf'?['spf']:['schematic','layout'];
+    }
+    function delayOwnerFor(item,side,specialType) {
+      if(specialType)return item[side+'Owner'];
+      if(side==='spf')return [item.def.schematicOwner||'未填写',item.def.layoutOwner||'未填写'].join(' / ');
+      return ownerFor(item,side);
+    }
+    function currentDelayRecords() {
+      if(!isSpecialIpTable()){
+        return availableDelayHierarchies().flatMap(side=>unique(data[side]).map(item=>[item,side]))
+          .filter(([item,side])=>stateFor(item,side)==='delay')
+          .map(([item,side])=>{const rail=railFor(item,side);return {item,side,planned:rail.planned,actual:rail.actual,days:Math.max(1,daysBetween(rail.actual?parseDate(rail.actual):TODAY,parseDate(rail.planned)))};});
+      }
+      const specialType=isIoIpTable()?'io':'analog',rows=specialType==='io'?ioIpRows:analogIpRows,latest=new Map();
+      rows.forEach(item=>{
+        const key=logicalNodeId(item),previous=latest.get(key);
+        if(!previous||versionOptions.indexOf(normalizeVersion(item.version))>versionOptions.indexOf(normalizeVersion(previous.version)))latest.set(key,item);
+      });
+      const stages=specialType==='io'?[
+        ['schematic','schReleasePlanFinish','schReleaseActualFinish','SCH release for Layout'],
+        ['layout','layoutFinishPlanned','layoutFinishActual','Layout finish status（for layout）']
+      ]:[
+        ['schematic','spfSimPlanned','spfSimActual','Spf-sim finish review(for design)'],
+        ['layout','layoutFinishPlanned','layoutFinishActual','Layout finish status（for layout）'],
+        ['layout','finalReviewPlanned','finalReviewActual','All check done & final review']
+      ];
+      return [...latest.values()].flatMap(item=>stages.filter(([,planned,actual])=>ioIpDerivedStatus(item,planned,actual)==='Delay').map(([side,planned,actual,stage])=>({
+        item,side,specialType,stage,planned:item[planned],actual:item[actual],days:daysBetween(parseDate(item[actual]),parseDate(item[planned]))
+      })));
+    }
+    function delayBlockCount(records,side) {
+      return new Set(records.filter(record=>record.side===side).map(record=>record.specialType?logicalNodeId(record.item):record.item.def.id)).size;
+    }
+    function delaySourceGroups(records,side) {
+      const rows=isIoIpTable()?ioIpRows:isAnalogIpTable()?analogIpRows:[];
+      const groups=new Map([...new Set(rows.map(item=>item.sourceTableName||''))].map(source=>[source,new Set()]));
+      records.filter(record=>record.specialType&&record.side===side).forEach(record=>{
+        const source=record.item.sourceTableName||'';
+        if(!groups.has(source))groups.set(source,new Set());
+        groups.get(source).add(logicalNodeId(record.item));
+      });
+      const sources=[...groups.keys()].filter(Boolean);
+      if(groups.has(''))sources.push('');
+      return sources.map(source=>({source,count:groups.get(source).size}));
+    }
+    function openDelaySourceDetails(button,side,source,tableName,epoch) {
+      if(tableName!==activeTableName||epoch!==projectEpoch||!isSpecialIpTable()||!button.isConnected||!document.getElementById('dashboardPage').classList.contains('active'))return showToast('来源视图已变化，请在当前总览重新选择');
+      if(!delaySourceGroups(currentDelayRecords(),side).some(group=>group.source===source))return showToast('该 Source 当前不在此 IP 表中，请重新查看');
+      currentDelayCategory=side;
+      showPage('delay');
+      delaySourceFilter=source;renderDelay();
+      document.getElementById('delaySourceSelect').focus({preventScroll:true});
+    }
+    function openDelayRecord(record,tableName,epoch) {
+      if(tableName!==activeTableName||epoch!==projectEpoch)return showToast('表视图已切换，请重新选择延期记录');
+      const live=currentDelayRecords().find(candidate=>candidate.item.id===record.item.id&&candidate.side===record.side&&candidate.stage===record.stage);
+      if(!live)return showToast('该延期记录已更新，请重新选择');
+      if(live.specialType){
+        showPage('wbs');openSpecialIpDrawer(live.item,live.specialType);
+      }else{
+        showPage('wbs');setHierarchy(live.side);openDrawer(live.item);
+      }
+    }
     function renderDashboard() {
+      const hasCheckItems=!isSpecialIpTable(),spfOnly=tableKinds.get(activeTableName)==='spf';
+      document.getElementById('dashboardPage').classList.toggle('without-check-items',!hasCheckItems);
+      document.getElementById('dashboardPage').classList.toggle('spf-dashboard',spfOnly);
+      document.getElementById('checkItemPanel').hidden=!hasCheckItems;
+      document.getElementById('checkItemProgressTitle').textContent=spfOnly?'SPF Check item 进度':'Check item 进度';
       const schUnique = unique(schematic), layUnique = unique(layout), spfUnique = unique(spf);
-      const schematicDelayed = schUnique.filter(item=>stateFor(item,'schematic')==='delay');
-      const layoutDelayed = layUnique.filter(item=>stateFor(item,'layout')==='delay');
-      const delayed = [...schematicDelayed.map(item=>[item,'schematic']),...layoutDelayed.map(item=>[item,'layout'])];
-      document.getElementById('metricGrid').innerHTML = [
-        ['Schematic check status',`${schUnique.filter(i=>progress(i,'schematic')===100).length}/${schUnique.length}`,'success'],['Layout check status',`${layUnique.filter(i=>progress(i,'layout')===100).length}/${layUnique.length}`,'success'],['Schematic Delay',schematicDelayed.length,'danger'],['Layout Delay',layoutDelayed.length,'warning']
-      ].map(([label,value,tone])=>`<div class="metric ${tone}"><div class="metric-top">${label}</div><strong>${value}</strong></div>`).join('');
+      const delayed=currentDelayRecords(),schematicDelayed=delayBlockCount(delayed,'schematic'),layoutDelayed=delayBlockCount(delayed,'layout'),spfDelayed=delayBlockCount(delayed,'spf');
+      const metrics=spfOnly?[
+        ['SPF check status',`${spfUnique.filter(item=>progress(item,'spf')===100).length}/${spfUnique.length}`,'success'],
+        ['SPF Delay',spfDelayed,'danger','spf']
+      ]:[
+        ...(hasCheckItems?[
+          ['Schematic check status',`${schUnique.filter(i=>progress(i,'schematic')===100).length}/${schUnique.length}`,'success'],
+          ['Layout check status',`${layUnique.filter(i=>progress(i,'layout')===100).length}/${layUnique.length}`,'success']
+        ]:[]),
+        ['Schematic Delay',schematicDelayed,'danger','schematic'],['Layout Delay',layoutDelayed,'warning','layout']
+      ];
+      document.getElementById('metricGrid').innerHTML=metrics.map(([label,value,tone,side])=>{
+        const content=`<span class="metric-top">${label}</span><strong>${value}</strong>`;
+        if(hasCheckItems)return `<div class="metric ${tone}">${content}</div>`;
+        const groups=delaySourceGroups(delayed,side);
+        const sources=groups.map(({source,count})=>`<button class="delay-source-option" type="button" data-delay-source="${esc(source)}" data-delay-source-side="${side}" title="${esc(source||'手动新增（Source 为空）')}" aria-label="${esc(source||'手动新增')}，${label}：${count}，查看明细"><span>${esc(source||'手动新增')}</span><b>${count}</b></button>`).join('');
+        return `<section class="metric delay-source-card ${tone}" data-delay-source-card="${side}" aria-label="${label}">${content}<div class="delay-source-columns"><span>Source</span><span>延期 Block 数</span></div><div class="delay-source-list">${sources||'<div class="delay-source-empty">暂无 Source</div>'}</div></section>`;
+      }).join('');
+      const cardTableName=activeTableName,cardEpoch=projectEpoch;
+      document.querySelectorAll('[data-delay-source]').forEach(button=>button.addEventListener('click',()=>openDelaySourceDetails(button,button.dataset.delaySourceSide,button.dataset.delaySource,cardTableName,cardEpoch)));
       const progressRails = [['Schematic',schUnique,'schematic','blue'],['Layout',layUnique,'layout','green'],['SPF',spfUnique,'spf','cyan']];
-      document.getElementById('checkItemProgress').innerHTML = progressRails.filter(([, ,type])=>tableHierarchies().includes(type)).map(([name,items,type,color])=>{
+      document.getElementById('checkItemProgress').innerHTML = progressRails.filter(([, ,type])=>hasCheckItems&&tableHierarchies().includes(type)).map(([name,items,type,color])=>{
         const completed = items.reduce((sum,item)=>sum+railFor(item,type).checks.filter(Boolean).length,0);
         const total = items.reduce((sum,item)=>sum+railFor(item,type).checks.length,0);
         const val = total ? Math.round(completed/total*100) : 0;
@@ -4829,8 +5004,13 @@
         return `<button type="button" class="rail-row dashboard-check-row" data-check-detail="${type}" title="${esc(breakdown)}" aria-label="查看 ${name} Check item 明细"><span class="rail-label"><strong>${name}</strong><small>${completed}/${total} check items</small></span><span class="progress ${color}"><span style="width:${val}%"></span></span><span class="rail-value">${val}%</span><span class="rail-chevron" aria-hidden="true">›</span></button>`;
       }).join('');
       document.querySelectorAll('[data-check-detail]').forEach(button=>button.addEventListener('click',()=>openCheckDetails(button.dataset.checkDetail)));
-      document.getElementById('issueList').innerHTML = delayed.slice(0,4).map(([i,t],idx)=>{const rail=railFor(i,t);return `<div class="issue"><span class="issue-dot ${idx>1?'amber':''}"></span><div><strong>${i.def.name}</strong><small>${t==='schematic'?'Schematic Planned':'Layout Plan finish'} · ${ownerFor(i,t)}</small></div><time>+${Math.max(1,daysBetween(rail.actual?parseDate(rail.actual):TODAY,parseDate(rail.planned)))}d</time></div>`}).join('');
-      document.getElementById('delayBadge').textContent = delayed.length;
+      const issues=(hasCheckItems?delayed:[...delayed].sort((a,b)=>b.days-a.days)).slice(0,4),tableName=activeTableName,epoch=projectEpoch;
+      document.getElementById('issueList').innerHTML=issues.map(({item,side,specialType,stage,days},index)=>{
+        const content=`<span class="issue-dot ${index>1?'amber':''}"></span><div><strong>${esc(specialType?specialIpBlockLabel(item):item.def.name)}</strong>${specialType?`<small class="issue-context">${esc(item.sourceTableName||'手动新增')} · Version ${esc(item.version||'空白')}</small>`:side==='spf'?`<small class="issue-context">Version ${esc(itemVersion(item,'spf')||'空白')}</small>`:''}<small>${esc(specialType?stage:side==='spf'?'Planned SPF release':side==='schematic'?'Schematic Planned':'Layout Plan finish')} · ${esc(delayOwnerFor(item,side,specialType))}</small></div><time>+${days}d</time>`;
+        return specialType||side==='spf'?`<button type="button" class="issue" data-delay-issue="${index}" title="查看 Block">${content}</button>`:`<div class="issue">${content}</div>`;
+      }).join('');
+      document.querySelectorAll('[data-delay-issue]').forEach(button=>button.addEventListener('click',()=>openDelayRecord(issues[Number(button.dataset.delayIssue)],tableName,epoch)));
+      document.getElementById('delayBadge').textContent=schematicDelayed+layoutDelayed+spfDelayed;
     }
 
     function checkDetailTotals(type) {
@@ -4842,12 +5022,12 @@
     function openCheckDetails(type='schematic') {
       currentCheckDetailHierarchy=type;
       showPage('checkItems');
-      renderCheckDetails();
     }
     function checkDetailHeaderHtml(type,key,title,className='') {
       return `<th class="${className}" data-check-column="${esc(key)}"><span class="column-header-content has-filter"><span class="column-header-label"><span class="check-column-title"><span>${esc(title)}</span></span></span></span><button type="button" class="column-filter-trigger ${checkDetailColumnFilters[type][key]?'filtered':''}" data-column-filter="${esc(key)}" data-check-column-filter data-filter-title="${esc(title)}" title="筛选 ${esc(title)}" aria-label="筛选 ${esc(title)}" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16l-6 7v5l-4 2v-7z"></path></svg></button></th>`;
     }
     function renderCheckDetails() {
+      if(isSpecialIpTable()){showToast('当前表没有 Check item');showPage('dashboard');return;}
       closeColumnFilterPopover();
       const hierarchies=tableHierarchies();
       if(!hierarchies.includes(currentCheckDetailHierarchy))currentCheckDetailHierarchy=hierarchies[0];
@@ -4868,7 +5048,7 @@
       document.getElementById('checkDetailBody').innerHTML=items.length?items.map(item=>{
         const rail=railFor(item,type);
         const hasChildren=logicalNodeHasChildren(data[type],item),group=logicalVersions(data[type],item),expanded=group.every(version=>version.expanded);
-        const blockCell=`<td class="check-frozen check-block-column"><div class="block-cell" style="padding-left:${(item.tier-1)*17}px"><button class="tree-toggle ${hasChildren?'':'hidden'}" type="button" data-check-tree-toggle title="${expanded?'收起':'展开'}下级 Block" aria-label="${expanded?'收起':'展开'} ${esc(item.def.name)} 的下级 Block" aria-expanded="${expanded}">${expanded?'▾':'▸'}</button><div class="block-main"><div class="block-title-line"><span class="block-name-wrap"><span class="block-name" data-check-block="${esc(item.id)}">${esc(item.def.name)}</span></span><span class="tier">T${item.tier}</span></div></div></div></td>`;
+        const blockCell=`<td class="check-frozen check-block-column"><div class="block-cell" style="padding-left:${(item.tier-1)*17}px"><button class="tree-toggle ${hasChildren?'':'hidden'}" type="button" data-check-tree-toggle title="${expanded?'收起':'展开'}下级 Block" aria-label="${expanded?'收起':'展开'} ${esc(item.def.name)} 的下级 Block" aria-expanded="${expanded}">${expanded?'▾':'▸'}</button><div class="block-main"><div class="block-title-line"><span class="tier">T${item.tier}</span><span class="block-name-wrap"><span class="block-name" data-check-block="${esc(item.id)}">${esc(item.def.name)}</span></span></div></div></div></td>`;
         const ownerCells=type==='spf'?`<td class="check-frozen check-owner-column">${esc(item.def.schematicOwner||'')}</td><td class="check-frozen check-layout-owner-column">${esc(item.def.layoutOwner||'')}</td>`:`<td class="check-frozen check-owner-column last-check-frozen">${esc(ownerFor(item,type)||'')}</td>`;
         return `<tr data-check-item-id="${esc(item.id)}">${blockCell}<td class="check-frozen check-version-column">${esc(itemVersion(item,type))}</td>${ownerCells}${visibleIndexes.map(index=>`<td class="check-matrix-cell"><button type="button" class="check-state ${rail.checks[index]?'done':''}" data-check-detail-index="${index}" title="${esc(labels[index])}: ${rail.checks[index]?'Done':'Not done'}" aria-label="${esc(item.def.name)} ${esc(labels[index])}" aria-pressed="${rail.checks[index]?'true':'false'}">${rail.checks[index]?'✓':''}</button></td>`).join('')}<td><span class="status ${rail.checks.every(Boolean)?'done':'ongoing'}">${esc(derivedCheckValue(item,type))}</span></td></tr>`;
       }).join(''):`<tr><td colspan="${visibleIndexes.length+(type==='spf'?5:4)}"><div class="empty"><strong>没有符合条件的 Block</strong>请调整筛选条件</div></td></tr>`;
@@ -4886,18 +5066,46 @@
     }
 
     function renderDelay() {
-      const allRecords = [...unique(schematic).map(i=>[i,'schematic']),...unique(layout).map(i=>[i,'layout'])]
-        .filter(([i,t])=>stateFor(i,t)==='delay')
-        .map(([i,t])=>{const rail=railFor(i,t);return {i,t,rail,days:Math.max(1,daysBetween(rail.actual?parseDate(rail.actual):TODAY,parseDate(rail.planned)))}})
-        .sort((a,b)=>b.days-a.days);
-      document.getElementById('schematicDelayCount').textContent = allRecords.filter(record=>record.t==='schematic').length;
-      document.getElementById('layoutDelayCount').textContent = allRecords.filter(record=>record.t==='layout').length;
-      document.querySelectorAll('[data-delay-category]').forEach(button=>button.classList.toggle('active',button.dataset.delayCategory===currentDelayCategory));
-      document.getElementById('delayBaselineHeader').textContent=currentDelayCategory==='schematic'?'Planned release':'Plan finish';
-      document.getElementById('delayActualHeader').textContent=currentDelayCategory==='schematic'?'Actual release':'Actual finish';
-      const records = allRecords.filter(record=>record.t===currentDelayCategory);
-      document.getElementById('delayBody').innerHTML = records.length ? records.map(({i,t,rail,days})=>`<tr><td><strong>${i.def.name}</strong><br><small>DEF-${i.def.id}</small></td><td>${t==='schematic'?'Schematic':'Layout'}</td><td>${ownerFor(i,t)}</td><td>${rail.planned}</td><td>${rail.actual || 'Today · 2026-08-25'}</td><td class="date late">+${days} days</td><td><span class="status delay">Delay</span></td><td><button class="btn" data-delay-id="${i.id}" data-delay-type="${t}">查看 Block</button></td></tr>`).join('') : `<tr><td colspan="8"><div class="empty"><strong>当前分类没有 Delay</strong>状态会随日期和 Progress 更新</div></td></tr>`;
-      document.querySelectorAll('[data-delay-id]').forEach(b=>b.addEventListener('click',()=>{currentHierarchy=b.dataset.delayType; showPage('wbs'); setHierarchy(currentHierarchy); openDrawer(data[currentHierarchy].find(i=>i.id===b.dataset.delayId));}));
+      const allRecords=currentDelayRecords().sort((a,b)=>b.days-a.days),special=isSpecialIpTable(),tableName=activeTableName,epoch=projectEpoch;
+      const hierarchies=availableDelayHierarchies();
+      if(!hierarchies.includes(currentDelayCategory))currentDelayCategory=hierarchies[0];
+      if(!special)delaySourceFilter=null;
+      const sources=[null,...(special?delaySourceGroups(allRecords,currentDelayCategory).map(group=>group.source):[])];
+      if(!sources.includes(delaySourceFilter)){
+        delaySourceFilter=null;showToast('该 Source 已不在当前 IP 表中，已显示全部 Source');
+      }
+      const sourceRecords=delaySourceFilter===null?allRecords:allRecords.filter(record=>(record.item.sourceTableName||'')===delaySourceFilter);
+      document.getElementById('delaySourceFilter').hidden=!special;
+      document.getElementById('delaySourceHeader').hidden=!special;
+      const sourceSelect=document.getElementById('delaySourceSelect'),sourceLabel=source=>source===null?'全部 Source':source||'手动新增';
+      sourceSelect.innerHTML=sources.map(source=>`<option value="${esc(JSON.stringify(source))}">${esc(sourceLabel(source))}</option>`).join('');
+      sourceSelect.value=JSON.stringify(delaySourceFilter);sourceSelect.title=sourceLabel(delaySourceFilter);sourceSelect.disabled=!special;
+      const onSourceChange=()=>{
+        if(sourceSelect.onchange!==onSourceChange||tableName!==activeTableName||epoch!==projectEpoch||!isSpecialIpTable()||!document.getElementById('delayPage').classList.contains('active')){
+          showToast('来源视图已变化，请在当前 Delay 页面重新选择');renderDelay();return;
+        }
+        const source=sources.find(value=>JSON.stringify(value)===sourceSelect.value);
+        if(source===undefined||(source!==null&&!delaySourceGroups(currentDelayRecords(),currentDelayCategory).some(group=>group.source===source))){
+          showToast('Source 无效，请选择当前 IP 表的来源');renderDelay();return;
+        }
+        delaySourceFilter=source;renderDelay();
+      };
+      sourceSelect.onchange=onSourceChange;
+      document.getElementById('schematicDelayCount').textContent=delayBlockCount(sourceRecords,'schematic');
+      document.getElementById('layoutDelayCount').textContent=delayBlockCount(sourceRecords,'layout');
+      document.getElementById('spfDelayCount').textContent=delayBlockCount(sourceRecords,'spf');
+      document.querySelectorAll('[data-delay-category]').forEach(button=>{
+        button.hidden=!hierarchies.includes(button.dataset.delayCategory);
+        button.classList.toggle('active',button.dataset.delayCategory===currentDelayCategory);
+      });
+      document.getElementById('delayStageHeader').hidden=!special;
+      document.getElementById('delayOwnerHeader').textContent=currentDelayCategory==='spf'?'Schematic Owner':'Owner';
+      document.getElementById('delayLayoutOwnerHeader').hidden=currentDelayCategory!=='spf';
+      document.getElementById('delayBaselineHeader').textContent=currentDelayCategory==='spf'?'Planned SPF release':!special&&currentDelayCategory==='schematic'?'Planned release':'Plan finish';
+      document.getElementById('delayActualHeader').textContent=currentDelayCategory==='spf'?'Actual SPF release':!special&&currentDelayCategory==='schematic'?'Actual release':'Actual finish';
+      const records=sourceRecords.filter(record=>record.side===currentDelayCategory);
+      document.getElementById('delayBody').innerHTML=records.length?records.map(({item,side,specialType,stage,planned,actual,days},index)=>`<tr>${specialType?`<td class="delay-source-column" title="${esc(item.sourceTableName||'手动新增（Source 为空）')}">${esc(item.sourceTableName||'手动新增')}</td>`:''}<td><strong>${esc(specialType?specialIpBlockLabel(item):item.def.name)}</strong><br><small>${specialType?`Version ${esc(item.version||'空白')}`:side==='spf'?`Version ${esc(itemVersion(item,'spf')||'空白')}`:`DEF-${esc(item.def.id)}`}</small></td>${specialType?`<td>${esc(stage)}</td>`:''}${side==='spf'?`<td>${esc(item.def.schematicOwner)}</td><td>${esc(item.def.layoutOwner)}</td>`:`<td>${esc(delayOwnerFor(item,side,specialType))}</td>`}<td>${esc(planned)}</td><td>${esc(actual||'Today · 2026-08-25')}</td><td class="date late">+${days} days</td><td><span class="status delay">Delay</span></td><td><button class="btn" data-delay-record="${index}" data-delay-id="${esc(item.id)}" data-delay-type="${side}">查看 Block</button></td></tr>`).join(''):`<tr><td colspan="${special?9:currentDelayCategory==='spf'?8:7}"><div class="empty"><strong>当前分类没有 Delay</strong>${special?'仅统计最新有效 Version 中计划与实际日期齐全的自动延期节点':currentDelayCategory==='spf'?'计划与实际日期齐全且实际晚于计划时计入 SPF Delay':'状态会随日期和 Progress 更新'}</div></td></tr>`;
+      document.querySelectorAll('[data-delay-record]').forEach(button=>button.addEventListener('click',()=>openDelayRecord(records[Number(button.dataset.delayRecord)],tableName,epoch)));
     }
 
     function setHierarchy(type) {
@@ -5144,6 +5352,7 @@
     }
     function closeSameTierDuplicateModal() { document.getElementById('sameTierDuplicateModal').classList.remove('open'); }
     function showPage(name) {
+      delaySourceFilter=null;
       if(name!=='excelImport'&&embeddedImportState?.importing)embeddedImportState.importing=false;
       closeCategoryManageModal(false);
       closeProjectChoice();
@@ -5323,8 +5532,17 @@
         state.data[type]=[];state.railState[type]={};state.changeHistory[type]={};state.structureChanges[type]=[];state.selectedVersions[type]=[];
       });
       if(!hierarchies.includes('spf'))state.detailState.spf={};
+      if(tableName==='LPTOP5'){
+        const actualDates={'spf-array':'2026-09-10','spf-peri':'2026-09-08','spf-peri-v2':'2026-09-17','spf-io':'2026-09-21','spf-pwr':'2026-09-08'};
+        for(const [rowId,actual] of Object.entries(actualDates)){
+          const item=state.data.spf.find(row=>row.id===rowId);
+          if(!item)throw new Error(`SPF 示例 Block 不存在：${rowId}`);
+          state.railState.spf[item.def.id].actual=actual;
+        }
+      }
       tableStateStore.set(tableName,state);
     });
+    initializeSpecialIpExamples();
     restoreTableState(tableStateStore.get(activeTableName));
     projectStates.set(activeProjectName,captureProjectState());
     reconcileActiveSourceCategoriesToSpecialIp();
