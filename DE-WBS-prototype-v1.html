@@ -210,6 +210,92 @@
     .issue > div { min-width: 0; overflow-wrap: anywhere; }
     .issue .issue-context { display: block; }
 
+    .dashboard-section-title { display: flex; align-items: center; justify-content: space-between; min-height: 32px; margin: 0 0 10px; }
+    .dashboard-section-title h2 { margin: 0; font-size: 16px; }
+    .resource-tracking { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); }
+    .resource-month-control { display: flex; align-items: center; gap: 8px; color: var(--text-2); font-size: 12px; }
+    .resource-month-control select { height: 32px; padding: 0 30px 0 10px; border: 1px solid var(--line-strong); border-radius: 5px; background: white; color: var(--text); }
+    .resource-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .resource-card { min-width: 0; min-height: 112px; padding: 15px 16px; border: 1px solid var(--line); border-radius: 7px; background: var(--surface); box-shadow: var(--shadow-soft); }
+    button.resource-card { width: 100%; color: inherit; text-align: left; }
+    button.resource-card:hover, button.resource-card:focus-visible { border-color: #8bb4ed; outline: 0; box-shadow: 0 0 0 2px rgba(0,82,217,.09); }
+    .resource-card-label { color: var(--text-2); font-size: 12px; }
+    .resource-card strong { display: block; margin-top: 12px; font-size: 26px; line-height: 1; }
+    .resource-card strong small { color: inherit; font-size: 13px; font-weight: 600; }
+    .resource-card > small { display: block; margin-top: 10px; color: var(--text-3); font-size: 11px; }
+    .resource-card.warning strong { color: var(--red); }
+    .resource-card.risk strong { color: var(--amber); }
+    .resource-heatmap-panel { margin-top: 12px; }
+    .resource-panel-head-copy h2 { margin: 0; font-size: 14px; }
+    .resource-panel-head-copy small { display: block; margin-top: 2px; color: var(--text-3); font-size: 11px; }
+    .resource-legend { display: flex; align-items: center; gap: 5px; color: var(--text-3); font-size: 10px; }
+    .resource-legend i { width: 17px; height: 7px; border-radius: 2px; }
+    .resource-legend .h1 { background: #edf4ff; }
+    .resource-legend .h2 { background: #d8e6fb; }
+    .resource-legend .h3 { background: #afcdf7; }
+    .resource-legend .h4 { background: #6296dc; }
+    .resource-legend .h5 { background: #2468c8; }
+    .resource-heatmap-wrap { max-height: 438px; overflow: auto; }
+    .resource-heatmap { width: 100%; min-width: 760px; border-collapse: separate; border-spacing: 0; }
+    .resource-heatmap th, .resource-heatmap td { height: 43px; padding: 0 10px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: center; }
+    .resource-heatmap th:last-child, .resource-heatmap td:last-child { border-right: 0; }
+    .resource-heatmap thead th { position: sticky; z-index: 3; top: 0; color: var(--text-2); background: #f7f9fb; font-size: 11px; }
+    .resource-heatmap thead th:first-child { z-index: 4; left: 0; width: 150px; text-align: left; }
+    .resource-heatmap tbody th { position: sticky; z-index: 2; left: 0; text-align: left; background: white; font-weight: 600; }
+    .resource-heatmap .analysis-month { box-shadow: inset 2px 0 #8bb4ed, inset -2px 0 #8bb4ed; }
+    .resource-heatmap thead .analysis-month { color: var(--blue); background: var(--blue-soft); }
+    .resource-heat { width: 100%; height: 29px; display: grid; place-items: center; border: 0; border-radius: 5px; font-weight: 700; }
+    .resource-heat.h0 { color: #9ba6af; background: #f5f7f9; }
+    .resource-heat.h1 { color: #536f91; background: #edf4ff; }
+    .resource-heat.h2 { color: #315b8b; background: #d8e6fb; }
+    .resource-heat.h3 { color: #234f83; background: #afcdf7; }
+    .resource-heat.h4 { color: white; background: #6296dc; }
+    .resource-heat.h5 { color: white; background: #2468c8; }
+    .resource-conflict-tag { display: inline-flex; align-items: center; height: 18px; margin-left: 7px; padding: 0 5px; border-radius: 999px; color: var(--amber); background: #fff4d7; font-size: 9px; font-weight: 600; vertical-align: middle; }
+    .resource-bottom-grid { display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); gap: 12px; margin-top: 12px; align-items: stretch; }
+    .resource-category-body { padding: 17px 18px; }
+    .resource-category-chart { height: 250px; display: flex; align-items: flex-end; justify-content: space-around; gap: 14px; padding: 12px 4% 0; border-bottom: 1px solid var(--line); }
+    .resource-category-month { height: 100%; max-width: 92px; flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 2px; }
+    .resource-category-month.analysis-month { padding: 4px; border: 1px solid #a7c8f7; border-radius: 7px; background: #f8fbff; }
+    .resource-category-stack { height: 190px; display: flex; flex-direction: column-reverse; overflow: hidden; border-radius: 5px 5px 2px 2px; background: #edf1f5; }
+    .resource-category-segment { width: 100%; min-height: 3px; border: 0; }
+    .resource-category-month-label { color: var(--text-3); font-size: 10px; text-align: center; }
+    .resource-category-month.analysis-month .resource-category-month-label { color: var(--blue); font-weight: 700; }
+    .resource-category-legend { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 13px; color: var(--text-2); font-size: 10px; }
+    .resource-category-legend span { display: inline-flex; align-items: center; gap: 5px; }
+    .resource-category-legend i { width: 8px; height: 8px; border-radius: 2px; }
+    .resource-category-na { height: 250px; display: grid; place-items: center; color: var(--text-3); text-align: center; }
+    .resource-brief { min-width: 0; height: 100%; overflow: hidden; border: 1px solid #c9b8ef; border-radius: 7px; background: linear-gradient(135deg,#fff 0%,#fbf9ff 100%); box-shadow: var(--shadow-soft); }
+    .resource-brief-head { min-height: 64px; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 14px 16px; border-bottom: 1px solid #e5dcf7; }
+    .resource-brief-title { display: flex; gap: 9px; min-width: 0; }
+    .resource-ai-mark { width: 32px; height: 32px; flex: 0 0 32px; display: grid; place-items: center; border-radius: 8px; color: #6f42c1; background: #efe9ff; font-size: 12px; font-weight: 800; }
+    .resource-brief-title h2 { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin: 0; font-size: 14px; }
+    .resource-ai-tag { padding: 2px 6px; border-radius: 999px; color: #6f42c1; background: #f1ecff; font-size: 9px; font-weight: 700; }
+    .resource-brief-title small { display: block; margin-top: 3px; color: var(--text-3); font-size: 10px; }
+    .resource-brief-actions { display: flex; align-items: center; gap: 7px; }
+    .resource-brief-stale { display: none; padding: 4px 7px; border-radius: 999px; color: var(--amber); background: #fff4d7; font-size: 9px; white-space: nowrap; }
+    .resource-brief.is-stale .resource-brief-stale { display: inline-block; }
+    .resource-brief-empty { min-height: 270px; display: grid; place-items: center; padding: 24px; color: var(--text-3); text-align: center; }
+    .resource-brief-empty strong { display: block; margin-bottom: 5px; color: var(--text-2); font-size: 13px; }
+    .resource-brief-content { display: none; padding: 14px 16px; }
+    .resource-brief.generated .resource-brief-empty { display: none; }
+    .resource-brief.generated .resource-brief-content { display: block; }
+    .resource-brief-meta { display: flex; flex-wrap: wrap; gap: 7px 14px; margin-bottom: 12px; color: var(--text-3); font-size: 9px; }
+    .resource-brief-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+    .resource-brief-block { padding: 11px; border: 1px solid #e7e1f3; border-radius: 6px; background: white; }
+    .resource-brief-block h3 { margin: 0 0 7px; font-size: 11px; }
+    .resource-brief-block ul { margin: 0; padding-left: 16px; }
+    .resource-brief-block li { margin: 5px 0; color: var(--text-2); font-size: 10px; }
+    .resource-evidence { border: 0; padding: 0; color: var(--blue); background: transparent; font-size: 10px; font-weight: 600; }
+    .resource-detail { position: fixed; z-index: 75; top: var(--topbar); right: 0; bottom: 0; width: 390px; max-width: calc(100vw - var(--sidebar)); padding: 18px; border-left: 1px solid var(--line); background: white; box-shadow: -12px 0 36px rgba(21,40,64,.15); transform: translateX(105%); transition: transform .2s ease; }
+    .resource-detail.open { transform: translateX(0); }
+    .resource-detail-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .resource-detail-head h2 { margin: 0; font-size: 15px; }
+    .resource-detail-body { padding-top: 10px; }
+    .resource-detail-row { padding: 11px 0; border-bottom: 1px solid var(--line); }
+    .resource-detail-row strong, .resource-detail-row small { display: block; }
+    .resource-detail-row small { margin-top: 3px; color: var(--text-3); }
+
     .check-detail-tabs { display: flex; gap: 4px; padding: 10px 12px 0 calc(var(--block-text-inset) - 12px); border-bottom: 1px solid var(--line); background: var(--surface-alt); }
     .check-detail-tabs button { width: auto; height: 42px; display: inline-flex; align-items: center; gap: 9px; border: 0; border-bottom: 2px solid transparent; padding: 0 12px; color: var(--text-2); background: transparent; text-align: left; }
     .check-detail-tabs button[hidden] { display: none; }
@@ -359,7 +445,8 @@
     th { position: sticky; top: 0; z-index: 3; height: 38px; background: #f7f9fb; color: #667384; font-size: 11px; text-transform: none; text-align: left; border-bottom: 1px solid var(--line); padding: 0 10px; white-space: nowrap; }
     td { height: 48px; border-bottom: 1px solid #edf0f3; padding: 0 10px; white-space: nowrap; font-size: 12px; }
     #tableWrap table { width: auto; min-width: 0; table-layout: fixed; }
-    #tableWrap th, #tableWrap td { padding-left: 6px; padding-right: 6px; }
+    #tableWrap th, #tableWrap td { padding-left: 6px; padding-right: 6px; border-right: 1px solid #edf0f3; }
+    #tableWrap th:last-child, #tableWrap td:last-child { border-right: 0; }
     #tableWrap td { overflow: hidden; text-overflow: ellipsis; }
     #tableWrap .editable-cell, #tableWrap .editable-cell.wide, #tableWrap .cell-select, #tableWrap .cell-input, #tableWrap .editable-cell .cell-editor .cell-select, #tableWrap .editable-cell .cell-editor .cell-input { min-width: 0; }
     .io-ip-head .io-ip-group-row th { top: 0; height: 38px; z-index: 6; text-align: center; color: #405269; background: #edf3f9; border-right: 1px solid #d9e2eb; }
@@ -386,7 +473,8 @@
     .column-header-content { width: 100%; height: 100%; max-width: 100%; display: inline-flex; align-items: center; gap: 3px; padding-right: 12px; vertical-align: middle; }
     .column-header-content.has-filter { padding-right: 38px; }
     .column-header-label { min-width: 0; flex: 0 1 auto; overflow-wrap: anywhere; white-space: normal; line-height: 14px; }
-    .column-filter-trigger { position: absolute; right: 14px; top: 50%; width: 18px; height: 18px; display: grid; place-items: center; border: 0; border-radius: 3px; padding: 0; color: #8995a2; background: transparent; transform: translateY(-50%); }
+    .column-filter-trigger { position: absolute; right: 14px; top: 50%; width: 18px; height: 18px; display: grid; place-items: center; border: 0; border-radius: 3px; padding: 0; color: #8995a2; background: transparent; opacity: 0; pointer-events: none; transform: translateY(-50%); transition: opacity .12s ease, color .12s ease, background .12s ease; }
+    #tableWrap th:hover .column-filter-trigger, #tableWrap th:focus-within .column-filter-trigger, #tableWrap .column-filter-trigger:focus, #tableWrap .column-filter-trigger.active { opacity: 1; pointer-events: auto; }
     .column-filter-trigger:hover, .column-filter-trigger:focus-visible, .column-filter-trigger.active { outline: 0; color: var(--blue); background: var(--blue-soft); }
     .column-filter-trigger.filtered { color: white; background: var(--blue); }
     .column-filter-trigger svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
@@ -512,6 +600,15 @@
     .column-filter-foot { padding: 8px 9px; border-top: 1px solid var(--line); display: flex; justify-content: flex-end; gap: 6px; }
     .review-ai-preview { position: fixed; z-index: 160; width: min(420px, calc(100vw - 20px)); display: none; overflow: auto; border: 1px solid #b9cadb; border-radius: 7px; padding: 10px 12px; color: var(--text); background: white; box-shadow: var(--shadow); white-space: pre-wrap; overflow-wrap: anywhere; font-size: 12px; line-height: 1.55; }
     .review-ai-preview.open { display: block; animation: enter .12s ease-out; }
+    .special-ip-path-preview { position: fixed; z-index: 160; width: min(380px, calc(100vw - 20px)); display: none; overflow: auto; border: 1px solid #b9cadb; border-radius: 7px; padding: 10px 12px; color: var(--text); background: white; box-shadow: var(--shadow); font-size: 12px; line-height: 1.45; user-select: text; }
+    .special-ip-path-preview.open { display: block; animation: enter .12s ease-out; }
+    .special-ip-path-preview strong { display: block; margin-bottom: 7px; color: var(--text-2); font-size: 11px; }
+    .special-ip-path-segment { display: block; min-width: max-content; white-space: nowrap; }
+    .special-ip-path-segment + .special-ip-path-segment { margin-top: 3px; }
+    .special-ip-path-segment::before { content: "└"; display: inline-block; width: 14px; margin-right: 3px; color: #9aa7b5; }
+    .special-ip-path-segment:first-of-type::before { content: ""; }
+    .special-ip-path-cell .block-name[data-special-ip-path-label] { max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+    .special-ip-path-cell .block-name[data-special-ip-path-label]:focus-visible { color: var(--blue); text-decoration: underline; outline: 0; box-shadow: 0 0 0 2px rgba(23,105,224,.16); border-radius: 3px; }
     .change-popover-close:hover { background: #eef2f6; color: var(--text); }
     .delay-source-columns, .delay-source-option { display: grid; grid-template-columns: minmax(0, 1fr) 80px; align-items: center; gap: 16px; }
     .delay-source-columns { margin-top: 16px; padding: 9px 6px; border-top: 1px solid var(--line); color: var(--text-3); font-size: 11px; }
@@ -1031,6 +1128,11 @@
     #excelImportPage .ei-success p { margin: 0; color: var(--text-2); font-size: 13px; }
     #excelImportPage .ei-success .ei-notice { min-height: 0; }
 
+    @media (max-width: 1180px) {
+      .resource-bottom-grid { grid-template-columns: minmax(0,1fr); }
+      .resource-card-grid { grid-template-columns: repeat(3, minmax(180px,1fr)); }
+      .resource-detail { max-width: calc(100vw - var(--sidebar)); }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0ms !important; transition-duration: 0ms !important; scroll-behavior: auto !important; }
     }
@@ -1098,6 +1200,7 @@
           <div><h1>Fullchip 总览</h1></div>
           <div class="head-actions"><button class="btn" id="refreshDashboard"><span class="symbol">↻</span>刷新状态</button></div>
         </div>
+        <div class="dashboard-section-title"><h2>进度跟踪</h2></div>
         <div class="metric-grid" id="metricGrid"></div>
         <div class="dashboard-grid">
           <section class="panel" id="checkItemPanel">
@@ -1109,6 +1212,56 @@
             <div class="panel-body issue-list" id="issueList"></div>
           </section>
         </div>
+        <section class="resource-tracking" id="resourceTracking">
+          <div class="dashboard-section-title">
+            <h2>资源跟踪</h2>
+            <label class="resource-month-control">分析月份
+              <select id="resourceAnalysisMonth" aria-label="资源跟踪分析月份"></select>
+            </label>
+          </div>
+          <div class="resource-card-grid">
+            <section class="resource-card">
+              <span class="resource-card-label">人均月度任务量</span>
+              <strong id="resourceAverageLoad">0 <small>Block/人</small></strong>
+              <small id="resourceAverageLoadNote">0项任务 / 0名 Owner</small>
+            </section>
+            <button class="resource-card warning" id="resourceConflictCard" type="button">
+              <span class="resource-card-label">周交付冲突 Owner</span>
+              <strong id="resourceConflictCount">0 <small>人</small></strong>
+              <small id="resourceConflictNote">涉及 0 个冲突周 · 点击查看</small>
+            </button>
+            <button class="resource-card risk" id="resourceCategoryRiskCard" type="button">
+              <span class="resource-card-label">单一 Owner 依赖 Category</span>
+              <strong id="resourceCategoryRiskCount">0 <small>个</small></strong>
+              <small id="resourceCategoryRiskNote">涉及 0 名唯一 Owner · 点击查看</small>
+            </button>
+          </div>
+          <section class="panel resource-heatmap-panel">
+            <div class="panel-head">
+              <div class="resource-panel-head-copy"><h2>人员月度负荷热力图</h2><small>前2个月 · 分析月 · 后3个月；数字为 Block–Owner 任务数</small></div>
+              <div class="resource-legend" aria-label="任务数颜色由低到高"><span>低</span><i class="h1"></i><i class="h2"></i><i class="h3"></i><i class="h4"></i><i class="h5"></i><span>高</span></div>
+            </div>
+            <div class="resource-heatmap-wrap"><table class="resource-heatmap" id="resourceHeatmap"></table></div>
+          </section>
+          <div class="resource-bottom-grid">
+            <section class="panel">
+              <div class="panel-head"><div class="resource-panel-head-copy"><h2>月度任务 Category 分布</h2><small>按 Block–Owner 任务数估算，非工时 / FTE</small></div></div>
+              <div class="resource-category-body" id="resourceCategoryBody"></div>
+            </section>
+            <section class="resource-brief" id="resourceBrief">
+              <div class="resource-brief-head">
+                <div class="resource-brief-title"><span class="resource-ai-mark">AI</span><div><h2>本月执行摘要 <span class="resource-ai-tag">AI 辅助</span></h2><small>结合进度和资源数据，整理本月风险及待确认事项</small></div></div>
+                <div class="resource-brief-actions"><span class="resource-brief-stale">数据范围已变化，请更新</span><button class="btn" id="generateResourceBrief" type="button">生成摘要</button></div>
+              </div>
+              <div class="resource-brief-empty"><div><strong>尚未生成当前范围的执行摘要</strong>生成后按风险概览、重点事项和待确认内容结构化展示。</div></div>
+              <div class="resource-brief-content" id="resourceBriefContent"></div>
+            </section>
+          </div>
+        </section>
+        <aside class="resource-detail" id="resourceDetail" aria-hidden="true">
+          <div class="resource-detail-head"><h2 id="resourceDetailTitle">资源明细</h2><button class="icon-btn" id="closeResourceDetail" type="button" title="关闭资源明细" aria-label="关闭资源明细">×</button></div>
+          <div class="resource-detail-body" id="resourceDetailBody"></div>
+        </aside>
       </section>
 
       <section class="page" id="checkItemsPage">
@@ -1201,6 +1354,7 @@
   </aside>
 
   <aside class="review-ai-preview" id="reviewAiPreview" role="tooltip" aria-hidden="true"></aside>
+  <aside class="special-ip-path-preview" id="specialIpPathPreview" role="tooltip" aria-hidden="true"></aside>
 
   <aside class="inline-add-menu" id="inlineAddMenu" role="menu" aria-label="新增 Block 或 Version">
     <button id="inlineAddVersion" type="button" role="menuitem"><span class="inline-add-menu-icon">+</span><strong>添加 Version</strong><small id="inlineAddVersionHint">为当前 Block 增加版本</small></button>
@@ -1852,6 +2006,23 @@
     function logicalNodeId(item) { return item?.nodeId||item?.id||null; }
     function logicalParentNodeId(item) { return item?.parentNodeId??null; }
     function logicalVersions(rows,item) { const nodeId=logicalNodeId(item);return rows.filter(candidate=>logicalNodeId(candidate)===nodeId); }
+    function versionOwnerSource(rows,item,type) {
+      const versions=logicalVersions(rows,item).sort((left,right)=>versionRank(left,type)-versionRank(right,type));
+      return versions.find(candidate=>itemVersion(candidate,type)==='1st')||versions[0]||item;
+    }
+    function alignOrdinaryVersionOwners(rows,type) {
+      const visited=new Set();
+      rows.forEach(item=>{
+        const nodeId=logicalNodeId(item);
+        if(visited.has(nodeId))return;
+        visited.add(nodeId);
+        const versions=logicalVersions(rows,item),source=versionOwnerSource(rows,item,type);
+        versions.forEach(version=>{
+          version.def.schematicOwner=source?.def?.schematicOwner||'';
+          version.def.layoutOwner=source?.def?.layoutOwner||'';
+        });
+      });
+    }
     function logicalNodeRepresentative(rows,nodeId) { return rows.find(candidate=>logicalNodeId(candidate)===nodeId)||null; }
     function logicalChildRows(rows,item) { const nodeId=logicalNodeId(item);return rows.filter(candidate=>logicalParentNodeId(candidate)===nodeId); }
     function logicalNodeHasChildren(rows,item) { return logicalChildRows(rows,item).length>0; }
@@ -2038,6 +2209,8 @@
     let activeTableName = 'ChanEdgel';
     let lastOrdinaryTableName = 'ChanEdgel';
     let schematicPlannedReleaseUnlocked = false;
+    let resourceAnalysisMonth = `${TODAY.getFullYear()}-${String(TODAY.getMonth()+1).padStart(2,'0')}`;
+    const resourceBriefStates = new Map();
 
     function clonePrototypeState(value) {
       return typeof structuredClone==='function'?structuredClone(value):JSON.parse(JSON.stringify(value));
@@ -2086,6 +2259,70 @@
       synchronizeSchematicLayoutIdentityRows();
       schematicPlannedReleaseUnlocked=Boolean(state.schematicPlannedReleaseUnlocked);
     }
+    const specialIpDeepPathExamples={
+      io:[
+        ['DEEP_IO_RX_SLICE',['DDCPC_TOP','PHY_CLUSTER','IO_SUBSYSTEM','RX_CHANNEL_GROUP','RX_LANE','DATA_RECOVERY','SAMPLER_BANK','DEEP_IO_RX_SLICE']],
+        ['DEEP_IO_TX_DRIVER',['DDCPC_TOP','PHY_CLUSTER','IO_SUBSYSTEM','TX_CHANNEL_GROUP','TX_LANE','PRE_DRIVER','DEEP_IO_TX_DRIVER']],
+        ['DEEP_IO_CLOCK_DESKEW',['DDCPC_TOP','PHY_CLUSTER','CLOCK_NETWORK','IO_CLOCK_DOMAIN','DESKEW_GROUP','DELAY_CHAIN','PHASE_ALIGN','DEEP_IO_CLOCK_DESKEW']]
+      ],
+      analog:[
+        ['DEEP_ANALOG_BIAS_CORE',['DDCPC_TOP','ANALOG_CLUSTER','POWER_MANAGEMENT','BIAS_NETWORK','CURRENT_REFERENCE','LOCAL_BIAS','DEEP_ANALOG_BIAS_CORE']],
+        ['DEEP_ANALOG_PLL_VCO',['DDCPC_TOP','ANALOG_CLUSTER','CLOCK_GENERATION','PLL_SUBSYSTEM','VCO_GROUP','VCO_CORE','TUNING_BANK','DEEP_ANALOG_PLL_VCO']],
+        ['DEEP_ANALOG_ADC_COMP',['DDCPC_TOP','ANALOG_CLUSTER','MONITORING','ADC_SUBSYSTEM','SAR_CHANNEL','COMPARATOR_ARRAY','OFFSET_TRIM','DEEP_ANALOG_ADC_COMP']]
+      ]
+    };
+    function initializeSpecialIpDeepPathExamples() {
+      Object.entries(specialIpDeepPathExamples).forEach(([type,examples])=>{
+        const rows=type==='io'?ioIpRows:analogIpRows;
+        examples.forEach(([block,names],index)=>{
+          const path=names.map((name,pathIndex)=>({name,tier:pathIndex+1}));
+          const created=createManualSpecialIpRow(type,{mode:'block',block,version:'1st',tier:path.length,parent:null,parentNodeId:null,referenceProject:'',schematicOwner:'',layoutOwner:'',sourceRegionName:''});
+          created.id=`${type}-deep-path-example-${index+1}`;created.nodeId=`${type}-deep-path-example-node-${index+1}`;
+          created.sourcePath=path;created.tier=path.length;created.demoPathExample=true;
+          specialIpStablePositions[type].set(created.id,900000+index*100);
+          specialIpStableSources[type].set(created.id,'');
+          specialIpChangeHistory[type][created.id]=[];
+          rows.push(created);
+          selectedSpecialIpVersions[type].set(specialIpGroupKey(created),created.id);
+        });
+        sortSpecialIpRows(type,rows);
+      });
+    }
+    const resourceTrackingExamples=[
+      ['RESOURCE_DEMO_RX_A','Xdec+Ydec','Ming Zhao','Tao He','2026-08-10','2026-06-15'],
+      ['RESOURCE_DEMO_RX_B','Xdec+Ydec','Ming Zhao','Nina Gao','2026-08-12','2026-09-18'],
+      ['RESOURCE_DEMO_RX_C','Xdec+Ydec','Ming Zhao','Tao He','2026-08-14','2026-10-07'],
+      ['RESOURCE_DEMO_DQ_A','DqByte','Han Li','Eric Lin','2026-08-04','2026-08-06'],
+      ['RESOURCE_DEMO_DQ_B','DqByte','Han Li','Nina Gao','2026-09-09','2026-08-20'],
+      ['RESOURCE_DEMO_BANK_A','Banklogic','Qin Yang','Sora Pan','2026-07-13','2026-08-25'],
+      ['RESOURCE_DEMO_BANK_B','Banklogic','Ivy Xu','Sora Pan','2026-08-26','2026-10-12'],
+      ['RESOURCE_DEMO_CTRL_A','Controller','Kai Ding','Wei Chen','2026-10-19','2026-08-03'],
+      ['RESOURCE_DEMO_CTRL_B','Controller','Rui Jiang','Wei Chen','2026-08-05','2026-11-16'],
+      ['RESOURCE_DEMO_DFT','DFT','Han Li','Tao He','2026-06-22','2026-07-20'],
+      ['RESOURCE_DEMO_FUSE','Fuse','Qin Yang','Eric Lin','2026-09-14','2026-10-21'],
+      ['RESOURCE_DEMO_UNCLASSIFIED','', 'Ivy Xu','Nina Gao','2026-08-17','2026-08-21'],
+      ['RESOURCE_DEMO_REFRESH','Row+Refresh+RHR','Rui Jiang','Sora Pan','2026-11-09','2026-09-23'],
+      ['RESOURCE_DEMO_MONITOR','DqByte','Kai Ding','Nina Gao','2026-07-27','2026-08-24']
+    ];
+    function initializeResourceTrackingExamples() {
+      const originalTable=activeTableName;
+      activeTableName='ChanEdgel';restoreTableState(tableStateStore.get(activeTableName));
+      resourceTrackingExamples.forEach(([name,category,schematicOwner,layoutOwner,schematicDate,layoutDate],index)=>{
+        const number=String(index+1).padStart(2,'0'),def={id:`resource-demo-${number}`,name,round:'1st',category,reference:'DPJQC',blockOwner:'',schematicOwner,layoutOwner};
+        for(const type of ['schematic','layout']){
+          const item=row(`${type.slice(0,3)}-resource-demo-${number}`,def,null,1,Array(checkLabels[type].length).fill(0),'','');
+          item.nodeId=`resource-demo-node-${number}`;item.parentNodeId=null;item.demoResourceExample=true;
+          data[type].push(item);
+          const rail=railState[type][def.id]=blankRail(type);
+          if(type==='schematic')rail.planned=schematicDate;
+          else{rail.startDate=layoutDate;rail.planWorkdays='0';rail.resource='1';rail.planned=layoutPlanFinishResult(rail).value||layoutDate;}
+          changeHistory[type][def.id]=[];
+        }
+      });
+      synchronizeSchematicLayoutIdentityRows();alignAllVersionOwners();
+      tableStateStore.set(activeTableName,captureTableState());
+      activeTableName=originalTable;
+    }
     function initializeSpecialIpExamples() {
       const examples=[
         ['ChanEdgel',{
@@ -2129,6 +2366,7 @@
         }
         tableStateStore.set(sourceTableName,captureTableState());
       }
+      initializeSpecialIpDeepPathExamples();
       activeTableName=originalTable;
     }
     function isIoIpTable(tableName=activeTableName) { return tableName===IO_IP_TABLE_NAME; }
@@ -2321,6 +2559,12 @@
       const path=specialIpBlockPath(item);
       return path.length?path.map(part=>`T${part.tier} ${part.name}`).join('/'):item.block;
     }
+    function specialIpDisplayBlockLabel(item) {
+      const path=specialIpBlockPath(item);
+      if(path.length<4)return specialIpBlockLabel(item);
+      const segment=part=>`T${part.tier} ${part.name}`;
+      return `${segment(path[0])}/…/${segment(path[path.length-1])}`;
+    }
     function specialIpDisplayDepth(item,rows) {
       let depth=0,parent=logicalParentNodeId(item);
       while(parent){depth++;parent=logicalParentNodeId(logicalNodeRepresentative(rows,parent));}
@@ -2338,6 +2582,28 @@
     function completeSpecialIpVersionGroup(item,type) {
       if(!item)return [];
       return [...(type==='io'?ioIpRows:analogIpRows),...dormantSpecialIpRows[type].values()].filter(row=>logicalNodeId(row)===logicalNodeId(item));
+    }
+    function specialIpVersionOwnerSource(item,type) {
+      const versions=completeSpecialIpVersionGroup(item,type).sort((left,right)=>specialIpVersionRank(left)-specialIpVersionRank(right));
+      return versions.find(candidate=>normalizeVersion(candidate.version)==='1st')||versions[0]||item;
+    }
+    function alignSpecialIpVersionOwners(type) {
+      const rows=[...(type==='io'?ioIpRows:analogIpRows),...dormantSpecialIpRows[type].values()],visited=new Set();
+      rows.forEach(item=>{
+        const key=specialIpGroupKey(item);
+        if(visited.has(key))return;
+        visited.add(key);
+        const source=specialIpVersionOwnerSource(item,type);
+        completeSpecialIpVersionGroup(item,type).forEach(version=>{
+          version.schematicOwner=source?.schematicOwner||'';
+          version.layoutOwner=source?.layoutOwner||'';
+        });
+      });
+    }
+    function alignAllVersionOwners() {
+      Object.entries(data).forEach(([type,rows])=>alignOrdinaryVersionOwners(rows,type));
+      alignSpecialIpVersionOwners('io');
+      alignSpecialIpVersionOwners('analog');
     }
     function selectedSpecialIpVersion(item,type) {
       const group=specialIpVersionGroup(item,type),key=specialIpGroupKey(item),selected=group.find(candidate=>candidate.id===selectedSpecialIpVersions[type].get(key))||group[0];
@@ -2568,7 +2834,8 @@
     function startSpecialIpVersionDraft(item,type) {
       const rows=type==='io'?ioIpRows:analogIpRows;
       if(!rows.includes(item)||!availableSpecialIpVersions(item,type).length)return showToast('已达到最高 Version：5th');
-      specialIpAddDraft={mode:'version',type,anchorId:item.id,version:'',block:item.block,tier:item.tier,parent:item.parent,parentNodeId:logicalParentNodeId(item),nodeId:logicalNodeId(item),sourceTableName:item.sourceTableName||'',sourceRegionName:item.sourceRegionName||effectiveSpecialIpSource(item,rows),referenceProject:item.referenceProject||'',schematicOwner:item.schematicOwner||'',layoutOwner:item.layoutOwner||'',focus:true};
+      const ownerSource=specialIpVersionOwnerSource(item,type);
+      specialIpAddDraft={mode:'version',type,anchorId:item.id,version:'',block:item.block,tier:item.tier,parent:item.parent,parentNodeId:logicalParentNodeId(item),nodeId:logicalNodeId(item),sourceTableName:item.sourceTableName||'',sourceRegionName:item.sourceRegionName||effectiveSpecialIpSource(item,rows),referenceProject:item.referenceProject||'',schematicOwner:ownerSource?.schematicOwner||'',layoutOwner:ownerSource?.layoutOwner||'',focus:true};
       closeInlineAddMenu();renderWbs();
     }
     function specialIpDisplayItems(type) {
@@ -2729,6 +2996,12 @@
       if(['schematicOwner','layoutOwner','qualityOwner'].includes(field)){
         const kind=field==='schematicOwner'?'schematicOwner':'layoutOwner',matching=matchingOwner(kind,newValue);if(matching===undefined)return showToast('Owner 无效，请选择已有人员或新增并使用');newValue=matching;
       }
+      if(field==='schematicOwner'||field==='layoutOwner'){
+        const versions=completeSpecialIpVersionGroup(item,type),changed=versions.filter(version=>version[field]!==newValue);
+        if(!changed.length)return;
+        changed.forEach(version=>{const oldValue=version[field];recordSpecialIpChange(version,type,field,oldValue,newValue);version[field]=newValue;});
+        renderWbs();showToast(`${field==='schematicOwner'?'Schematic Owner':'Layout Owner'} 已同步到全部 Version`);return;
+      }
       const oldValue=item[field];
       if(oldValue===newValue)return;
       if(field==='version'&&(normalizeVersion(oldValue)||newValue!=='1st'||availableSpecialIpVersions(item,type)[0]!=='1st'))return showToast('已有 Version 不能改名；请通过添加 Version 创建下一版');
@@ -2746,6 +3019,7 @@
       if(tableName===activeTableName)return;
       delaySourceFilter=null;
       closeDrawer(false);
+      closeResourceDetail();
       specialIpAddDraft=null;
       closeInlineAddMenu();
       if(activeTableName&&!isSpecialIpTable())tableStateStore.set(activeTableName,captureTableState());
@@ -2757,7 +3031,7 @@
       if(!isSpecialIpTable())lastOrdinaryTableName=tableName;
       resetWbsColumnFilters();
       if(isSpecialIpTable()){
-        renderWbs();
+        renderWbs();renderDashboard();renderDelay();
         if(document.getElementById('checkItemsPage').classList.contains('active'))showPage('dashboard');
       }
       else {
@@ -3365,7 +3639,7 @@
       syncWbsColumnLayout(type,definitions,widths);
     }
     function currentSpecialIpColumnWidths(type,definitions) {
-      return definitions.map(([key,minimum])=>key==='latestChange'?(latestChangeDrawerCollapsed?8:44):Math.max(headerMinimum(type,key,minimum),Number(wbsColumnWidths[type]?.[key])||minimum));
+      return definitions.map(([key,minimum])=>key==='latestChange'?(latestChangeDrawerCollapsed?8:44):Math.min(600,Math.max(headerMinimum(type,key,minimum),Number(wbsColumnWidths[type]?.[key])||minimum)));
     }
     function assignSpecialIpHeaderKeys(type,definitions) {
       const directIndexes=type==='io'?[0,1,2,3,4,5,26]:[0,1,2,3,4,5,16,26];
@@ -3374,19 +3648,33 @@
       const directSet=new Set(directIndexes),secondIndexes=definitions.map((_,index)=>index).filter(index=>!directSet.has(index)&&definitions[index][0]!=='latestChange');
       [...wbsHead.querySelectorAll('.io-ip-leaf-row > th')].forEach((header,index)=>header.dataset.columnKey=definitions[secondIndexes[index]][0]);
     }
+    function updateSpecialIpPathLabels(blockWidth) {
+      const measure=document.createElement('canvas').getContext('2d');
+      if(measure)measure.font=`700 12px ${getComputedStyle(wbsBody).fontFamily}`;
+      tableWrap.querySelectorAll('[data-special-ip-path-label]').forEach(label=>{
+        const segments=JSON.parse(label.dataset.pathSegments||'[]'),full=segments.join('/'),compact=label.dataset.compactPath||full,blockCell=label.closest('.block-cell');
+        const leftPadding=Number.parseFloat(blockCell?.style.paddingLeft)||0,available=Math.max(0,blockWidth-leftPadding-70);
+        let visible=compact;
+        if(blockWidth>360&&segments.length>3&&measure){
+          for(let revealed=1;revealed<segments.length-1;revealed++){
+            const suffix=segments.slice(segments.length-1-revealed),candidate=revealed===segments.length-2?full:`${segments[0]}/…/${suffix.join('/')}`;
+            if(measure.measureText(candidate).width>available)break;
+            visible=candidate;
+          }
+        }else if(segments.length<=3&&measure?.measureText(full).width<=available)visible=full;
+        label.textContent=visible;
+      });
+    }
     function syncSpecialIpColumnLayout(type,definitions,widths) {
       const displayedWidths=displayedWbsColumnWidths(definitions,widths);
       const rows=type==='io'?ioIpRows:analogIpRows,maxTier=Math.max(1,...rows.map(item=>specialIpDisplayDepth(item,rows)+1));
       displayedWidths[1]=Math.max(displayedWidths[1],165+(maxTier-1)*17);
-      // Fit the usual full path on first display; a user's resized width still takes precedence.
-      if(!Number(wbsColumnWidths[type]?.block)&&rows.some(row=>row.sourcePath?.length)){
-        const measure=document.createElement('canvas').getContext('2d');
-        if(measure){measure.font=`700 12px ${getComputedStyle(wbsBody).fontFamily}`;displayedWidths[1]=Math.max(displayedWidths[1],Math.min(600,Math.ceil(Math.max(...rows.map(row=>measure.measureText(specialIpBlockLabel(row)).width))+78)));}
-      }
+      if(!Number(wbsColumnWidths[type]?.block)&&rows.some(row=>specialIpBlockPath(row).length))displayedWidths[1]=Math.max(displayedWidths[1],360);
       if(specialIpAddDraft?.type===type&&specialIpAddDraft.mode==='block')displayedWidths[1]=Math.max(displayedWidths[1],330);
       if(specialIpAddDraft?.type===type&&specialIpAddDraft.mode==='version')displayedWidths[2]=Math.max(displayedWidths[2],170);
       fitWbsHeaderColumns(type,definitions,displayedWidths);
       [...wbsColgroup.children].forEach((column,index)=>{column.style.width=`${displayedWidths[index]}px`;});
+      updateSpecialIpPathLabels(displayedWidths[1]);
       const totalWidth=displayedWidths.reduce((sum,width)=>sum+width,0);
       wbsTable.style.width=`${totalWidth}px`;wbsTable.style.minWidth=`${totalWidth}px`;
       tableWrap.querySelectorAll('.io-ip-source-column').forEach(cell=>{cell.style.left='0px';});
@@ -3429,9 +3717,10 @@
         }
         const handle=document.createElement('button');
         handle.type='button';handle.className='column-resizer';handle.setAttribute('role','separator');handle.setAttribute('aria-orientation','vertical');
-        handle.setAttribute('aria-label',`拖动调整 ${headerText} 列宽`);handle.setAttribute('aria-valuemin',String(minimum));handle.setAttribute('aria-valuemax','600');handle.title='拖动调整列宽';
+        const maximum=600;
+        handle.setAttribute('aria-label',`拖动调整 ${headerText} 列宽`);handle.setAttribute('aria-valuemin',String(minimum));handle.setAttribute('aria-valuemax',String(maximum));handle.title='拖动调整列宽';
         const updateWidth=nextWidth=>{
-          widths[index]=Math.min(600,Math.max(minimum,Math.round(nextWidth)));
+          widths[index]=Math.min(maximum,Math.max(minimum,Math.round(nextWidth)));
           (wbsColumnWidths[type] ||= {})[key]=widths[index];
           syncSpecialIpColumnLayout(type,definitions,widths);
         };
@@ -3504,7 +3793,8 @@
     }
     function startInlineVersionDraft(anchor) {
       if(!data[currentHierarchy].includes(anchor)||!availableInlineVersions(anchor).length)return showToast('已达到最高 Version：5th');
-      inlineAddDraft={...inlineDraftBase(anchor),mode:'version',nodeId:logicalNodeId(anchor),name:anchor.def.name,tier:anchor.tier,parent:anchor.parent,parentNodeId:logicalParentNodeId(anchor),category:anchor.def.category,reference:anchor.def.reference};
+      const ownerSource=versionOwnerSource(data[currentHierarchy],anchor,currentHierarchy);
+      inlineAddDraft={...inlineDraftBase(anchor),mode:'version',nodeId:logicalNodeId(anchor),name:anchor.def.name,tier:anchor.tier,parent:anchor.parent,parentNodeId:logicalParentNodeId(anchor),category:anchor.def.category,reference:anchor.def.reference,schematicOwner:ownerSource?.def?.schematicOwner||'',layoutOwner:ownerSource?.def?.layoutOwner||''};
       if(currentHierarchy==='layout'&&!itemVersion(anchor,'layout'))inlineAddDraft.resource=railFor(anchor,'layout').resource;
       closeInlineAddMenu();renderWbs();
     }
@@ -3718,6 +4008,50 @@
       cell.addEventListener('focusout',scheduleReviewAiPreviewClose);
       input.addEventListener('input',()=>showReviewAiPreview(cell));
     }
+    let specialIpPathPreviewCell=null,specialIpPathPreviewCloseTimer=null;
+    function closeSpecialIpPathPreview() {
+      clearTimeout(specialIpPathPreviewCloseTimer);
+      const preview=document.getElementById('specialIpPathPreview');
+      preview.classList.remove('open');preview.setAttribute('aria-hidden','true');preview.replaceChildren();
+      specialIpPathPreviewCell=null;
+    }
+    function positionSpecialIpPathPreview(cell) {
+      const preview=document.getElementById('specialIpPathPreview'),rect=cell.getBoundingClientRect(),margin=10,gap=6;
+      const width=Math.min(380,window.innerWidth-margin*2),below=window.innerHeight-rect.bottom-gap-margin,above=rect.top-gap-margin,placeBelow=below>=160||below>=above;
+      const availableHeight=Math.max(80,placeBelow?below:above);
+      preview.style.width=`${width}px`;preview.style.maxHeight=`${availableHeight}px`;
+      const height=Math.min(preview.scrollHeight,availableHeight),left=Math.min(window.innerWidth-width-margin,Math.max(margin,rect.left));
+      preview.style.left=`${left}px`;preview.style.top=`${placeBelow?rect.bottom+gap:Math.max(margin,rect.top-height-gap)}px`;
+    }
+    function showSpecialIpPathPreview(cell,item) {
+      clearTimeout(specialIpPathPreviewCloseTimer);
+      const path=specialIpBlockPath(item);
+      if(!path.length)return closeSpecialIpPathPreview();
+      const preview=document.getElementById('specialIpPathPreview'),title=document.createElement('strong');
+      title.textContent='完整来源路径';preview.replaceChildren(title);
+      path.forEach((part,index)=>{
+        const segment=document.createElement('span');
+        segment.className='special-ip-path-segment';segment.style.paddingLeft=`${index*12}px`;segment.textContent=`T${part.tier} ${part.name}`;
+        preview.appendChild(segment);
+      });
+      specialIpPathPreviewCell=cell;preview.classList.add('open');preview.setAttribute('aria-hidden','false');
+      positionSpecialIpPathPreview(cell);
+    }
+    function scheduleSpecialIpPathPreviewClose() {
+      clearTimeout(specialIpPathPreviewCloseTimer);
+      specialIpPathPreviewCloseTimer=setTimeout(()=>{
+        const preview=document.getElementById('specialIpPathPreview');
+        if(!specialIpPathPreviewCell?.matches(':hover')&&!preview.matches(':hover')&&document.activeElement!==specialIpPathPreviewCell)closeSpecialIpPathPreview();
+      },80);
+    }
+    function bindSpecialIpPathPreview(tableRow,item) {
+      const cell=tableRow.querySelector('[data-special-ip-path-label]');
+      if(!cell)return;
+      cell.addEventListener('mouseenter',()=>showSpecialIpPathPreview(cell,item));
+      cell.addEventListener('mouseleave',scheduleSpecialIpPathPreviewClose);
+      cell.addEventListener('focus',()=>showSpecialIpPathPreview(cell,item));
+      cell.addEventListener('blur',scheduleSpecialIpPathPreviewClose);
+    }
     function ioIpDateCell(field,value) {
       return `<td><div class="editable-cell"><div class="cell-display ${value?'':'empty'}">${value?esc(value):''}</div><div class="cell-editor">${clearableDateControl(`<input class="cell-input date-input" type="date" data-io-edit="${field}" value="${esc(value)}">`,value)}</div></div></td>`;
     }
@@ -3737,8 +4071,10 @@
     }
     function specialIpBlockCell(item,type) {
       const rows=type==='io'?ioIpRows:analogIpRows,group=specialIpVersionGroup(item,type),hasChildren=logicalNodeHasChildren(rows,item),expanded=group.every(member=>member.expanded!==false),levelPad=specialIpDisplayDepth(item,rows)*17;
-      const label=specialIpBlockLabel(item),path=Boolean(specialIpBlockPath(item).length);
-      return `<td class="frozen-column frozen-block-column ${path?'special-ip-path-cell':''}"><div class="block-cell" style="padding-left:${levelPad}px"><button class="tree-toggle ${hasChildren?'':'hidden'}" type="button" title="${expanded?'收起':'展开'}下级 Block" aria-label="${expanded?'收起':'展开'} ${esc(label)} 的下级 Block" aria-expanded="${expanded}">${expanded?'▾':'▸'}</button><div class="block-main"><div class="block-title-line">${path?'':`<span class="tier">T${item.tier}</span>`}<span class="block-name-wrap"><span class="block-name" title="${esc(label)}">${esc(label)}</span><span class="row-actions"><button class="row-action row-add" data-special-ip-add type="button" title="新增 Block" aria-label="在 ${esc(label)} 行新增 Block">+</button><button class="row-action row-delete" data-special-ip-delete type="button" title="删除 ${esc(label)} Block" aria-label="删除 ${esc(label)} Block"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M19 6v14H5V6"></path><path d="M10 11v5M14 11v5"></path></svg></button></span></span></div></div></div></td>`;
+      const pathParts=specialIpBlockPath(item),label=specialIpBlockLabel(item),displayLabel=specialIpDisplayBlockLabel(item),path=Boolean(pathParts.length);
+      const segments=pathParts.map(part=>`T${part.tier} ${part.name}`);
+      const pathAttributes=path?`data-special-ip-path-label data-path-segments="${esc(JSON.stringify(segments))}" data-compact-path="${esc(displayLabel)}" tabindex="0" aria-label="完整来源路径：${esc(label)}"`:`title="${esc(label)}"`;
+      return `<td class="frozen-column frozen-block-column ${path?'special-ip-path-cell':''}"><div class="block-cell" style="padding-left:${levelPad}px"><button class="tree-toggle ${hasChildren?'':'hidden'}" type="button" title="${expanded?'收起':'展开'}下级 Block" aria-label="${expanded?'收起':'展开'} ${esc(label)} 的下级 Block" aria-expanded="${expanded}">${expanded?'▾':'▸'}</button><div class="block-main"><div class="block-title-line">${path?'':`<span class="tier">T${item.tier}</span>`}<span class="block-name-wrap"><span class="block-name" ${pathAttributes}>${esc(displayLabel)}</span><span class="row-actions"><button class="row-action row-add" data-special-ip-add type="button" title="新增 Block" aria-label="在 ${esc(label)} 行新增 Block">+</button><button class="row-action row-delete" data-special-ip-delete type="button" title="删除 ${esc(label)} Block" aria-label="删除 ${esc(label)} Block"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M19 6v14H5V6"></path><path d="M10 11v5M14 11v5"></path></svg></button></span></span></div></div></div></td>`;
     }
     function specialIpSourceMergePlan(items,allRows,merge=true) {
       const plan=new Map();
@@ -3837,6 +4173,7 @@
         guardProjectEvents(tableRow);
         const item=ioIpRows.find(candidate=>candidate.id===tableRow.dataset.ioId);
         bindReviewAiPreview(tableRow);
+        bindSpecialIpPathPreview(tableRow,item);
         tableRow.querySelector('.tree-toggle:not(.hidden)')?.addEventListener('click',event=>{event.stopPropagation();const group=specialIpVersionGroup(item,'io'),expanded=group.every(member=>member.expanded!==false);group.forEach(member=>member.expanded=!expanded);renderWbs();});
         tableRow.querySelector('.block-name')?.addEventListener('click',event=>{event.stopPropagation();openSpecialIpDrawer(item,'io');});
         tableRow.querySelector('[data-special-ip-add]')?.addEventListener('click',event=>{event.stopPropagation();openSpecialIpAddMenu(item,'io',event.currentTarget);});
@@ -3902,6 +4239,7 @@
       wbsBody.querySelectorAll('tr[data-analog-id]').forEach(tableRow=>{
         guardProjectEvents(tableRow);
         const item=analogIpRows.find(candidate=>candidate.id===tableRow.dataset.analogId);
+        bindSpecialIpPathPreview(tableRow,item);
         tableRow.querySelector('.tree-toggle:not(.hidden)')?.addEventListener('click',event=>{event.stopPropagation();const group=specialIpVersionGroup(item,'analog'),expanded=group.every(member=>member.expanded!==false);group.forEach(member=>member.expanded=!expanded);renderWbs();});
         tableRow.querySelector('.block-name')?.addEventListener('click',event=>{event.stopPropagation();openSpecialIpDrawer(item,'analog');});
         tableRow.querySelector('[data-special-ip-add]')?.addEventListener('click',event=>{event.stopPropagation();openSpecialIpAddMenu(item,'analog',event.currentTarget);});
@@ -3939,6 +4277,8 @@
 
     function renderWbs() {
       closeCategoryChoice();
+      closeSpecialIpPathPreview();
+      alignAllVersionOwners();
       assertHierarchyIntegrity();
       ensureSpecialTableOptions();
       if(isSpecialIpTable()&&!tableSelectorNames(true).includes(activeTableName)){
@@ -4219,6 +4559,18 @@
         : field === 'round' ? currentHierarchy==='spf'?info.round:item.def.round||''
         : ['lvsPath','cdl','gds'].includes(field) ? info[field]
         : rail[field];
+      if(['owner','schematicOwner','layoutOwner'].includes(field)){
+        const ownerField=field==='owner'?currentHierarchy+'Owner':field;
+        const label=ownerField==='schematicOwner'?'Schematic Owner':'Layout Owner';
+        const historyTypes=ownerField==='schematicOwner'?['schematic','spf']:['layout','spf'];
+        const changed=[...new Map(logicalVersions(data[currentHierarchy],item).map(version=>[version.def.id,version])).values()].filter(version=>version.def[ownerField]!==normalized);
+        if(!changed.length)return;
+        changed.forEach(version=>{const previous=version.def[ownerField]||'';version.def[ownerField]=normalized;recordDefinitionChange(version,historyTypes,label,previous,normalized);});
+        reconcileActiveSourceCategoriesToSpecialIp();
+        renderWbs();renderDashboard();renderDelay();
+        showToast(`${label} 已同步到全部 Version`);
+        return;
+      }
       if (oldValue === normalized) return;
       if(field==='round'&&(normalizeVersion(oldValue)||normalized!=='1st'||availableInlineVersions(item,currentHierarchy)[0]!=='1st')){showToast('已有 Version 不能改名；请通过添加 Version 创建下一版');renderWbs();return;}
       if(field==='round'&&data[currentHierarchy].some(candidate=>candidate.def.id!==item.def.id&&candidate.tier===item.tier&&candidate.def.name.trim().toLowerCase()===item.def.name.trim().toLowerCase()&&itemVersion(candidate,currentHierarchy)===normalized)){showToast('同名、同 Tier、同 Version 的 Block 已存在');renderWbs();return;}
@@ -4940,7 +5292,7 @@
     }
     function delaySourceGroups(records,side) {
       const rows=isIoIpTable()?ioIpRows:isAnalogIpTable()?analogIpRows:[];
-      const groups=new Map([...new Set(rows.map(item=>item.sourceTableName||''))].map(source=>[source,new Set()]));
+      const groups=new Map([...new Set(rows.filter(item=>!item.demoPathExample).map(item=>item.sourceTableName||''))].map(source=>[source,new Set()]));
       records.filter(record=>record.specialType&&record.side===side).forEach(record=>{
         const source=record.item.sourceTableName||'';
         if(!groups.has(source))groups.set(source,new Set());
@@ -4968,6 +5320,189 @@
         showPage('wbs');setHierarchy(live.side);openDrawer(live.item);
       }
     }
+    function resourceShiftMonth(month,offset) {
+      const [year,monthIndex]=month.split('-').map(Number),date=new Date(Date.UTC(year,monthIndex-1+offset,1));
+      return `${date.getUTCFullYear()}-${String(date.getUTCMonth()+1).padStart(2,'0')}`;
+    }
+    function resourceMonthLabel(month,long=false) {
+      const [year,monthIndex]=month.split('-').map(Number);
+      return long?`${year}年${monthIndex}月`:`${monthIndex}月`;
+    }
+    function resourceMonthKey(date) { return /^\d{4}-\d{2}/.test(String(date||''))?String(date).slice(0,7):''; }
+    function resourceMonthWindow(month) { return [-2,-1,0,1,2,3].map(offset=>resourceShiftMonth(month,offset)); }
+    function highestResourceRows(rows,type) {
+      const groups=new Map();
+      rows.forEach(item=>{
+        const key=logicalNodeId(item),rank=versionOptions.indexOf(normalizeVersion(itemVersion(item,type))),existing=groups.get(key);
+        if(!existing||rank>existing.rank)groups.set(key,{item,rank});
+      });
+      return [...groups.values()].map(entry=>entry.item);
+    }
+    function highestSpecialResourceRows(rows) {
+      const groups=new Map();
+      rows.forEach(item=>{
+        const key=specialIpGroupKey(item),rank=versionOptions.indexOf(normalizeVersion(item.version)),existing=groups.get(key);
+        if(!existing||rank>existing.rank)groups.set(key,{item,rank});
+      });
+      return [...groups.values()].map(entry=>entry.item);
+    }
+    function resourceTasks() {
+      const tasks=[];
+      const addTask=(item,side,owner,planned,category,version,label)=>tasks.push({
+        id:`${side}:${item.id}`,item,side,owner:String(owner||'').trim(),planned:String(planned||'').trim(),
+        category:String(category||'').trim(),version:normalizeVersion(version),label
+      });
+      if(isSpecialIpTable()){
+        const type=isIoIpTable()?'io':'analog',rows=highestSpecialResourceRows(type==='io'?ioIpRows:analogIpRows);
+        rows.forEach(item=>{
+          if(type==='io'){
+            addTask(item,'schematic',item.schematicOwner,item.schReleasePlanFinish,IO_IP_TABLE_NAME,item.version,'Schematic');
+            addTask(item,'layout',item.layoutOwner,item.layoutFinishPlanned,IO_IP_TABLE_NAME,item.version,'Layout');
+          }else{
+            addTask(item,'schematic',item.schematicOwner,item.spfSimPlanned,ANALOG_IP_TABLE_NAME,item.version,'Schematic');
+            addTask(item,'layout',item.layoutOwner,item.finalReviewPlanned,ANALOG_IP_TABLE_NAME,item.version,'Layout');
+          }
+        });
+        return tasks;
+      }
+      tableHierarchies().forEach(type=>highestResourceRows(data[type],type).forEach(item=>{
+        const rail=railFor(item,type),owner=type==='spf'?item.def.layoutOwner:ownerFor(item,type);
+        addTask(item,type,owner,rail?.planned,type==='spf'?'':item.def.category,itemVersion(item,type),type==='spf'?'SPF':type==='schematic'?'Schematic':'Layout');
+      }));
+      return tasks;
+    }
+    function validResourceTasks(tasks=resourceTasks()) { return tasks.filter(task=>task.owner&&resourceMonthKey(task.planned)); }
+    function resourceWeekKey(value) {
+      const date=parseDate(value);if(!date)return '';
+      const monday=new Date(date),day=(monday.getDay()+6)%7;monday.setDate(monday.getDate()-day);
+      return monday.toISOString().slice(0,10);
+    }
+    function resourceConflictGroups(tasks,month=resourceAnalysisMonth) {
+      const groups=new Map();
+      tasks.filter(task=>task.owner&&resourceMonthKey(task.planned)===month).forEach(task=>{
+        const key=`${task.owner}|${resourceWeekKey(task.planned)}`,entry=groups.get(key)||{owner:task.owner,week:resourceWeekKey(task.planned),tasks:[]};
+        entry.tasks.push(task);groups.set(key,entry);
+      });
+      return [...groups.values()].filter(entry=>entry.tasks.length>=2);
+    }
+    function resourceCategoryRisks(tasks,month=resourceAnalysisMonth) {
+      const groups=new Map();
+      tasks.filter(task=>task.owner&&resourceMonthKey(task.planned)===month&&task.category).forEach(task=>{
+        const entry=groups.get(task.category)||{category:task.category,tasks:[],owners:new Set()};
+        entry.tasks.push(task);entry.owners.add(task.owner);groups.set(task.category,entry);
+      });
+      return [...groups.values()].filter(entry=>entry.tasks.length>=2&&entry.owners.size===1);
+    }
+    function resourceTaskName(task) { return isSpecialIpTable()?specialIpBlockLabel(task.item):task.item.def.name; }
+    function resourceTaskSummary(task) {
+      return `${resourceTaskName(task)} · ${task.label} · ${task.version||'空白 Version'} · ${task.planned}`;
+    }
+    function resourceSnapshotSignature(tasks=resourceTasks()) {
+      const taskValues=tasks.map(task=>[task.id,task.owner,task.planned,task.category,task.version]).sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b)));
+      const delayValues=currentDelayRecords().map(record=>[record.item.id,record.side,record.stage||'',record.days]).sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b)));
+      const checkValues=isSpecialIpTable()?[]:tableHierarchies().flatMap(type=>highestResourceRows(data[type],type).map(item=>[type,item.id,...railFor(item,type).checks]));
+      return JSON.stringify([taskValues,delayValues,checkValues]);
+    }
+    function resourceBriefKey() { return `${activeProjectName}|${activeTableName}`; }
+    function resourceMetrics(tasks=validResourceTasks()) {
+      const monthTasks=tasks.filter(task=>resourceMonthKey(task.planned)===resourceAnalysisMonth),owners=new Set(monthTasks.map(task=>task.owner));
+      const conflicts=resourceConflictGroups(tasks),risks=resourceCategoryRisks(tasks);
+      return {tasks,monthTasks,owners,conflicts,risks,average:owners.size?(monthTasks.length/owners.size).toFixed(1):'0'};
+    }
+    function openResourceDetail(title,rows) {
+      const panel=document.getElementById('resourceDetail');
+      document.getElementById('resourceDetailTitle').textContent=title;
+      document.getElementById('resourceDetailBody').innerHTML=rows.length?rows.map(row=>`<div class="resource-detail-row"><strong>${esc(row.title)}</strong><small>${esc(row.detail||'')}</small></div>`).join(''):'<div class="empty"><strong>暂无明细</strong>当前范围内没有符合条件的记录</div>';
+      panel.classList.add('open');panel.setAttribute('aria-hidden','false');document.getElementById('closeResourceDetail').focus();
+    }
+    function closeResourceDetail() {
+      const panel=document.getElementById('resourceDetail');panel.classList.remove('open');panel.setAttribute('aria-hidden','true');
+    }
+    function renderResourceMonthOptions() {
+      const select=document.getElementById('resourceAnalysisMonth');
+      const prototypeMonth=`${TODAY.getFullYear()}-${String(TODAY.getMonth()+1).padStart(2,'0')}`;
+      const months=Array.from({length:19},(_,index)=>resourceShiftMonth(prototypeMonth,index-6));
+      if(!months.includes(resourceAnalysisMonth))resourceAnalysisMonth=prototypeMonth;
+      select.innerHTML=months.map(month=>`<option value="${month}">${resourceMonthLabel(month,true)}</option>`).join('');
+      select.value=resourceAnalysisMonth;
+    }
+    function renderResourceHeatmap(metrics,months) {
+      const conflictOwners=new Set(metrics.conflicts.map(entry=>entry.owner)),owners=new Map();
+      metrics.tasks.filter(task=>months.includes(resourceMonthKey(task.planned))).forEach(task=>{
+        if(!owners.has(task.owner))owners.set(task.owner,Object.fromEntries(months.map(month=>[month,[]])));
+        owners.get(task.owner)[resourceMonthKey(task.planned)].push(task);
+      });
+      const rows=[...owners].sort((left,right)=>{
+        const conflictDelta=Number(conflictOwners.has(right[0]))-Number(conflictOwners.has(left[0]));
+        return conflictDelta||right[1][resourceAnalysisMonth].length-left[1][resourceAnalysisMonth].length||left[0].localeCompare(right[0]);
+      });
+      document.getElementById('resourceHeatmap').innerHTML=`<thead><tr><th>Owner</th>${months.map(month=>`<th class="${month===resourceAnalysisMonth?'analysis-month':''}">${resourceMonthLabel(month)}${month===resourceAnalysisMonth?'<br><small>分析月</small>':''}</th>`).join('')}</tr></thead><tbody>${rows.length?rows.map(([owner,values])=>`<tr><th>${esc(owner)}${conflictOwners.has(owner)?'<span class="resource-conflict-tag" title="分析月存在周交付冲突">冲突</span>':''}</th>${months.map(month=>{const count=values[month].length;return `<td class="${month===resourceAnalysisMonth?'analysis-month':''}"><button class="resource-heat h${Math.min(5,count)}" type="button" data-resource-owner="${esc(owner)}" data-resource-month="${month}" aria-label="${esc(owner)} ${resourceMonthLabel(month,true)} ${count}项任务">${count}</button></td>`;}).join('')}</tr>`).join(''):`<tr><td colspan="7"><div class="empty"><strong>暂无资源任务</strong>当前六个月窗口内没有同时填写 Owner 和计划日期的任务</div></td></tr>`}</tbody>`;
+      document.querySelectorAll('[data-resource-owner]').forEach(button=>button.addEventListener('click',()=>{
+        const owner=button.dataset.resourceOwner,month=button.dataset.resourceMonth,items=owners.get(owner)?.[month]||[];
+        openResourceDetail(`${owner} · ${resourceMonthLabel(month,true)}`,items.map(task=>({title:resourceTaskName(task),detail:resourceTaskSummary(task)})));
+      }));
+    }
+    function renderResourceCategories(metrics,months) {
+      const body=document.getElementById('resourceCategoryBody');
+      if(tableKinds.get(activeTableName)==='spf'){
+        body.innerHTML='<div class="resource-category-na"><div><strong>不适用</strong><br>SPF WBS 没有 Block Category</div></div>';return;
+      }
+      const categories=[...new Set(metrics.tasks.map(task=>task.category||'未分类'))].sort((left,right)=>left==='未分类'?1:right==='未分类'?-1:left.localeCompare(right));
+      const palette=['#2f73d2','#43a77d','#efa11f','#8464d3','#7e91a1','#5a8f95','#ba6f8f','#7884c5'];
+      const colorByCategory=new Map(categories.map((category,index)=>[category,palette[index%palette.length]]));
+      const monthValues=months.map(month=>{
+        const tasks=metrics.tasks.filter(task=>resourceMonthKey(task.planned)===month),counts=new Map(categories.map(category=>[category,0]));
+        tasks.forEach(task=>counts.set(task.category||'未分类',(counts.get(task.category||'未分类')||0)+1));
+        return {month,tasks,counts};
+      });
+      body.innerHTML=`<div class="resource-category-chart">${monthValues.map(({month,tasks,counts})=>`<div class="resource-category-month ${month===resourceAnalysisMonth?'analysis-month':''}"><div class="resource-category-stack">${categories.map(category=>{const count=counts.get(category)||0,share=tasks.length?count/tasks.length*100:0;return share?`<button class="resource-category-segment" type="button" style="height:${share}%;background:${colorByCategory.get(category)}" data-resource-category="${esc(category)}" data-resource-category-month="${month}" title="${esc(category)} · ${count}项 · ${Math.round(share)}%"></button>`:'';}).join('')}</div><div class="resource-category-month-label">${resourceMonthLabel(month)}</div></div>`).join('')}</div><div class="resource-category-legend">${categories.map(category=>`<span><i style="background:${colorByCategory.get(category)}"></i>${esc(category)}</span>`).join('')}</div>`;
+      document.querySelectorAll('[data-resource-category]').forEach(button=>button.addEventListener('click',()=>{
+        const category=button.dataset.resourceCategory,month=button.dataset.resourceCategoryMonth;
+        const items=metrics.tasks.filter(task=>(task.category||'未分类')===category&&resourceMonthKey(task.planned)===month);
+        openResourceDetail(`${category} · ${resourceMonthLabel(month,true)}`,items.map(task=>({title:resourceTaskName(task),detail:`${task.owner} · ${resourceTaskSummary(task)}`})));
+      }));
+    }
+    function bindResourceEvidence(metrics) {
+      document.querySelectorAll('[data-resource-evidence]').forEach(button=>button.addEventListener('click',()=>{
+        const type=button.dataset.resourceEvidence;
+        if(type==='conflicts')openResourceDetail('周交付冲突 Owner',metrics.conflicts.flatMap(entry=>entry.tasks.map(task=>({title:`${entry.owner} · ${entry.week}`,detail:resourceTaskSummary(task)}))));
+        if(type==='risks')openResourceDetail('单一 Owner 依赖 Category',metrics.risks.flatMap(entry=>entry.tasks.map(task=>({title:`${entry.category} · ${task.owner}`,detail:resourceTaskSummary(task)}))));
+        if(type==='delay')openResourceDetail('进度阻塞',currentDelayRecords().map(record=>({title:resourceTaskName({item:record.item}),detail:`${record.side} · +${record.days}d`})));
+      }));
+    }
+    function resourceBriefHtml(metrics,generatedAt) {
+      const delayed=currentDelayRecords(),missing=resourceTasks().filter(task=>!task.owner||!resourceMonthKey(task.planned));
+      const firstConflict=metrics.conflicts[0],firstRisk=metrics.risks[0];
+      return `<div class="resource-brief-meta"><span>范围：${esc(activeProjectName)} / ${esc(activeTableName)}</span><span>分析月份：${esc(resourceMonthLabel(resourceAnalysisMonth,true))}</span><span>数据时间：${esc(generatedAt)}</span><span>Version：最高现存 Version</span></div><div class="resource-brief-grid">
+        <section class="resource-brief-block"><h3>风险概览</h3><ul><li>${metrics.owners.size} 名 Owner 承担 ${metrics.monthTasks.length} 项任务，人均 ${metrics.average} Block。</li><li>${new Set(metrics.conflicts.map(entry=>entry.owner)).size} 名 Owner 存在周交付冲突。</li><li>${metrics.risks.length} 个 Category 的任务集中在单一 Owner。</li></ul></section>
+        <section class="resource-brief-block"><h3>进度阻塞</h3><ul><li>当前范围有 ${delayed.length} 条已发生 Delay 记录。 ${delayed.length?'<button class="resource-evidence" type="button" data-resource-evidence="delay">查看证据</button>':''}</li><li>Check 阻塞继续沿用当前父子 Block 完成规则。</li></ul></section>
+        <section class="resource-brief-block"><h3>资源冲突</h3><ul><li>${firstConflict?`${esc(firstConflict.owner)} 在 ${esc(firstConflict.week)} 当周有 ${firstConflict.tasks.length} 项任务计划完成。`:'当前分析月没有周交付冲突。'} ${metrics.conflicts.length?'<button class="resource-evidence" type="button" data-resource-evidence="conflicts">查看任务</button>':''}</li><li>${firstRisk?`${esc(firstRisk.category)} 的 ${firstRisk.tasks.length} 项任务集中于 ${esc([...firstRisk.owners][0])}。`:'当前分析月没有单一 Owner 依赖 Category。'} ${metrics.risks.length?'<button class="resource-evidence" type="button" data-resource-evidence="risks">查看明细</button>':''}</li></ul></section>
+        <section class="resource-brief-block"><h3>待确认与数据完整性</h3><ul><li>${metrics.conflicts.length?'确认冲突周任务的交付顺序。':'当前没有需要确认的周交付冲突。'}</li><li>${missing.length} 项任务因缺 Owner 或计划日期未纳入统计。</li></ul></section>
+      </div>`;
+    }
+    function renderResourceBrief(metrics) {
+      const panel=document.getElementById('resourceBrief'),content=document.getElementById('resourceBriefContent'),button=document.getElementById('generateResourceBrief');
+      const state=resourceBriefStates.get(resourceBriefKey()),signature=resourceSnapshotSignature(),stale=Boolean(state&&(state.month!==resourceAnalysisMonth||state.signature!==signature));
+      panel.classList.toggle('generated',Boolean(state));panel.classList.toggle('is-stale',stale);button.textContent=state?'更新摘要':'生成摘要';
+      content.innerHTML=state?state.html:'';if(state)bindResourceEvidence(metrics);
+    }
+    function renderResourceTracking() {
+      renderResourceMonthOptions();
+      const tasks=validResourceTasks(),metrics=resourceMetrics(tasks),months=resourceMonthWindow(resourceAnalysisMonth);
+      document.getElementById('resourceAverageLoad').innerHTML=`${metrics.average} <small>Block/人</small>`;
+      document.getElementById('resourceAverageLoadNote').textContent=`${metrics.monthTasks.length}项任务 / ${metrics.owners.size}名 Owner`;
+      document.getElementById('resourceConflictCount').innerHTML=`${new Set(metrics.conflicts.map(entry=>entry.owner)).size} <small>人</small>`;
+      document.getElementById('resourceConflictNote').textContent=`涉及 ${metrics.conflicts.length} 个冲突周 · 点击查看`;
+      document.getElementById('resourceCategoryRiskCount').innerHTML=`${metrics.risks.length} <small>个</small>`;
+      document.getElementById('resourceCategoryRiskNote').textContent=`涉及 ${new Set(metrics.risks.flatMap(entry=>[...entry.owners])).size} 名唯一 Owner · 点击查看`;
+      renderResourceHeatmap(metrics,months);renderResourceCategories(metrics,months);renderResourceBrief(metrics);
+    }
+    function generateResourceBrief() {
+      const metrics=resourceMetrics(),generatedAt=new Date().toLocaleString('sv-SE',{hour12:false}).slice(0,16);
+      resourceBriefStates.set(resourceBriefKey(),{month:resourceAnalysisMonth,signature:resourceSnapshotSignature(),html:resourceBriefHtml(metrics,generatedAt)});
+      renderResourceBrief(metrics);showToast('本月执行摘要已生成');
+    }
+
     function renderDashboard() {
       const hasCheckItems=!isSpecialIpTable(),spfOnly=tableKinds.get(activeTableName)==='spf';
       document.getElementById('dashboardPage').classList.toggle('without-check-items',!hasCheckItems);
@@ -5011,6 +5546,7 @@
       }).join('');
       document.querySelectorAll('[data-delay-issue]').forEach(button=>button.addEventListener('click',()=>openDelayRecord(issues[Number(button.dataset.delayIssue)],tableName,epoch)));
       document.getElementById('delayBadge').textContent=schematicDelayed+layoutDelayed+spfDelayed;
+      renderResourceTracking();
     }
 
     function checkDetailTotals(type) {
@@ -5353,6 +5889,7 @@
     function closeSameTierDuplicateModal() { document.getElementById('sameTierDuplicateModal').classList.remove('open'); }
     function showPage(name) {
       delaySourceFilter=null;
+      if(name!=='dashboard')closeResourceDetail();
       if(name!=='excelImport'&&embeddedImportState?.importing)embeddedImportState.importing=false;
       closeCategoryManageModal(false);
       closeProjectChoice();
@@ -5469,10 +6006,12 @@
     document.addEventListener('click',event=>{if(!document.getElementById('calculationPopover').contains(event.target)&&!event.target.closest('[data-calculation-rule]'))closeCalculationPopover();});
     document.addEventListener('click',event=>{if(!document.getElementById('columnFilterPopover').contains(event.target)&&!event.target.closest('[data-column-filter]'))closeColumnFilterPopover();});
     document.addEventListener('click',event=>{if(!document.getElementById('inlineAddMenu').contains(event.target)&&!event.target.closest('[data-add-child]')&&!event.target.closest('[data-special-ip-add]'))closeInlineAddMenu();});
-    tableWrap.addEventListener('scroll',()=>{maintainOpenChangePopoverOnScroll();if(document.activeElement!==openCalculationButton)closeCalculationPopover();if(!document.getElementById('columnFilterPopover').contains(document.activeElement))closeColumnFilterPopover();closeReviewAiPreview();closeInlineAddMenu();});
-    window.addEventListener('resize',()=>{closeChangePopover();closeCalculationPopover();closeColumnFilterPopover();closeReviewAiPreview();closeInlineAddMenu();if(isWbsTableFullscreen())refreshWbsColumnLayout();});
+    tableWrap.addEventListener('scroll',()=>{maintainOpenChangePopoverOnScroll();if(document.activeElement!==openCalculationButton)closeCalculationPopover();if(!document.getElementById('columnFilterPopover').contains(document.activeElement))closeColumnFilterPopover();closeReviewAiPreview();closeSpecialIpPathPreview();closeInlineAddMenu();});
+    window.addEventListener('resize',()=>{closeChangePopover();closeCalculationPopover();closeColumnFilterPopover();closeReviewAiPreview();closeSpecialIpPathPreview();closeInlineAddMenu();if(isWbsTableFullscreen())refreshWbsColumnLayout();});
     document.getElementById('reviewAiPreview').addEventListener('mouseenter',()=>clearTimeout(reviewAiPreviewCloseTimer));
     document.getElementById('reviewAiPreview').addEventListener('mouseleave',scheduleReviewAiPreviewClose);
+    document.getElementById('specialIpPathPreview').addEventListener('mouseenter',()=>clearTimeout(specialIpPathPreviewCloseTimer));
+    document.getElementById('specialIpPathPreview').addEventListener('mouseleave',scheduleSpecialIpPathPreviewClose);
     if(typeof ResizeObserver==='function')new ResizeObserver(()=>{if(isWbsTableFullscreen())refreshWbsColumnLayout();}).observe(document.documentElement);
     document.getElementById('drawerClose').addEventListener('click',closeDrawer);
     document.getElementById('drawerBackdrop').addEventListener('click',closeDrawer);
@@ -5492,7 +6031,18 @@
     document.querySelectorAll('[data-close-special-ip-delete]').forEach(button=>button.addEventListener('click',closeSpecialIpDeleteModal));
     document.getElementById('specialIpDeleteModal').addEventListener('click',event=>{if(event.target===event.currentTarget)closeSpecialIpDeleteModal();});
     document.getElementById('confirmSpecialIpDelete').addEventListener('click',confirmSpecialIpDelete);
-    document.getElementById('refreshDashboard').addEventListener('click',()=>{renderDashboard();showToast('状态已按最新 check 和日期重新计算');});
+    document.getElementById('refreshDashboard').addEventListener('click',()=>{renderDashboard();showToast('状态与资源已按最新数据重新计算');});
+    document.getElementById('resourceAnalysisMonth').addEventListener('change',event=>{resourceAnalysisMonth=event.target.value;closeResourceDetail();renderResourceTracking();});
+    document.getElementById('generateResourceBrief').addEventListener('click',generateResourceBrief);
+    document.getElementById('closeResourceDetail').addEventListener('click',closeResourceDetail);
+    document.getElementById('resourceConflictCard').addEventListener('click',()=>{
+      const conflicts=resourceConflictGroups(validResourceTasks());
+      openResourceDetail('周交付冲突 Owner',conflicts.flatMap(entry=>entry.tasks.map(task=>({title:`${entry.owner} · ${entry.week}`,detail:resourceTaskSummary(task)}))));
+    });
+    document.getElementById('resourceCategoryRiskCard').addEventListener('click',()=>{
+      const risks=resourceCategoryRisks(validResourceTasks());
+      openResourceDetail('单一 Owner 依赖 Category',risks.flatMap(entry=>entry.tasks.map(task=>({title:`${entry.category} · ${task.owner}`,detail:resourceTaskSummary(task)}))));
+    });
     document.getElementById('tableSelect').addEventListener('click',event=>{const button=event.target.closest('[data-table-name]');if(button&&button.dataset.tableName!==activeTableName)requestWorkspaceAction(()=>switchPrototypeTable(button.dataset.tableName));});
     document.getElementById('tableSelect').addEventListener('keydown',event=>{
       if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
@@ -5524,6 +6074,7 @@
     });
 
     synchronizeSchematicLayoutIdentityRows();
+    alignAllVersionOwners();
     syncProjectCandidateDatalists();
     const initialTableState=captureTableState();
     ['ChanEdgel','ChanLeft','ChanMid','LPTOP5'].forEach(tableName=>{
@@ -5542,6 +6093,7 @@
       }
       tableStateStore.set(tableName,state);
     });
+    initializeResourceTrackingExamples();
     initializeSpecialIpExamples();
     restoreTableState(tableStateStore.get(activeTableName));
     projectStates.set(activeProjectName,captureProjectState());
